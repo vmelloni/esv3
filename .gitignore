@@ -1,0 +1,19 @@
+*.pyc
+*/.env
+*/.out
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Unit test / coverage reports
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+.env
+.out
+*.idea/*
+collected-static-files/
+
+
