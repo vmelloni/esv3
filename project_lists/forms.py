@@ -26,12 +26,12 @@ class ActivityForm(ModelForm):
 
     class Meta:
         model = Activity
-        fields = ("name", "optimist", "pessimist", "average")
+        fields = ("name", "optimist", "average", "pessimist",)
         labels = {
             "name": _("Activity"),
             "optimist": _("Optimist"),
-            "pessimist": _("Pessimist"),
             "average": _("Average"),
+            "pessimist": _("Pessimist"),
         }
         widgets = {
             "name": forms.TextInput(attrs={
@@ -44,14 +44,14 @@ class ActivityForm(ModelForm):
                 "placeholder": "Optimist Value",
                 "autocomplete": "random_name",
             }),
-            "pessimist": forms.NumberInput(attrs={
-                "class": "form-control",
-                "placeholder": "Pessimist Value",
-                "autocomplete": "random_name",
-            }),
             "average": forms.NumberInput(attrs={
                 "class": "form-control",
                 "placeholder": "Average Value",
+                "autocomplete": "random_name",
+            }),
+            "pessimist": forms.NumberInput(attrs={
+                "class": "form-control",
+                "placeholder": "Pessimist Value",
                 "autocomplete": "random_name",
             }),
         }

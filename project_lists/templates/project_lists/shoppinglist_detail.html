@@ -57,10 +57,10 @@
             </div>
         </div>
     </div>
-    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="EditActivity"
+    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="EditItem"
          tabindex="-1" role="dialog" style="color: black">
     </div>
-    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="DeleteActivity"
+    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="DeleteItem"
          tabindex="-1" role="dialog" style="color: black">
     </div>
 
@@ -183,24 +183,22 @@
                                                            btn-icon btn-sm "
                                                     title="Update Activity Name."
                                                     data-action="{% url 'project_lists:update_activity' item.id %}"
-                                                    data-modal_id="#EditActivity"
-                                                    data-form_id="#edit-form"
-                                            >
+                                                    data-modal_id="#EditItem"
+                                                    data-form_id="#edit-form">
                                                 <i class="now-ui-icons users_single-02"></i>
                                             </button>
-                                            <button type="button" rel="tooltip"
+                                          <button type="button" rel="tooltip"
                                                     class="alien-modal-trigger btn btn-danger btn-icon btn-sm "
                                                     title="Delete Activity."
                                                     data-action="{% url 'project_lists:delete_activity' item.id %}"
-                                                    data-modal_id="#EditActivity"
-                                                    data-form_id="#delete-activity-form"
-                                                    data-list_name={{ activity.name }}>
+                                                    data-modal_id="#DeleteItem"
+                                                    data-form_id="#delete-item-form"
+                                                    data-list_name={{ item.name }}>
                                                 <i class="now-ui-icons ui-1_simple-remove"></i>
                                             </button>
+
                                         </td>
-<!--                                         <td class="text-right">-->
-<!--                                            <a class="nav-link" href="{}">Estimate</a>-->
-<!--                                         </td>-->
+
                                     </tr>
                                 {% endfor %}
                                 </tbody>

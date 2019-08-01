@@ -39,7 +39,6 @@ class ProjectUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = "project_lists/edit_list_form.html"
     success_url = reverse_lazy("project_lists:dashboard")
     success_message = "Update was successful."
-
     def form_valid(self, form):
         list_name = form.cleaned_data['name']
         owner = self.request.user

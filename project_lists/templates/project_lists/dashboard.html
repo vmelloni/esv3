@@ -38,6 +38,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="FormModal"
          tabindex="-1" role="dialog" style="color: black">
     </div>
@@ -145,12 +146,12 @@
                                                     rel="tooltip"
                                                     class="alien-modal-trigger btn btn-info
                                                            btn-icon btn-sm "
-                                                    title="Update Project Name."
+                                                    title="Update Project."
                                                     data-action="{% url 'project_lists:update_list' list.id %}"
                                                     data-modal_id="#FormModal"
-                                                    data-form_id="#edit-form"
-                                            >
+                                                    data-form_id="#update-form">
                                                 <i class="now-ui-icons users_single-02"></i>
+
                                             </button>
                                             <button type="button"
                                                     rel="tooltip"
