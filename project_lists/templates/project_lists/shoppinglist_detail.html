@@ -57,10 +57,10 @@
             </div>
         </div>
     </div>
-    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="EditActivity"
+    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="EditItem"
          tabindex="-1" role="dialog" style="color: black">
     </div>
-    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="DeleteActivity"
+    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="DeleteItem"
          tabindex="-1" role="dialog" style="color: black">
     </div>
 
@@ -114,6 +114,9 @@
                            class="padding-five btn btn-primary btn-round float-right"><i
                                 class="padding-five material-icons">add</i>
                         </a>
+                        <div class="text-left">
+                            <button type="button" class="btn btn-primary">Estimate</button>
+                        </div>
                     </div>
                     <div class="table-responsive ">
                         <table class="table">
@@ -148,6 +151,9 @@
                                     <th class="text-right">
                                         Actions
                                     </th>
+<!--                                      <th class="text-right">-->
+<!--                                        Estimate-->
+<!--                                    </th>-->
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -177,21 +183,22 @@
                                                            btn-icon btn-sm "
                                                     title="Update Activity Name."
                                                     data-action="{% url 'project_lists:update_activity' item.id %}"
-                                                    data-modal_id="#EditActivity"
-                                                    data-form_id="#edit-form"
-                                            >
+                                                    data-modal_id="#EditItem"
+                                                    data-form_id="#edit-form">
                                                 <i class="now-ui-icons users_single-02"></i>
                                             </button>
-                                            <button type="button" rel="tooltip"
+                                          <button type="button" rel="tooltip"
                                                     class="alien-modal-trigger btn btn-danger btn-icon btn-sm "
                                                     title="Delete Activity."
                                                     data-action="{% url 'project_lists:delete_activity' item.id %}"
-                                                    data-modal_id="#EditActivity"
-                                                    data-form_id="#delete-activity-form"
-                                                    data-list_name={{ activity.name }}>
+                                                    data-modal_id="#DeleteItem"
+                                                    data-form_id="#delete-item-form"
+                                                    data-list_name={{ item.name }}>
                                                 <i class="now-ui-icons ui-1_simple-remove"></i>
                                             </button>
+
                                         </td>
+
                                     </tr>
                                 {% endfor %}
                                 </tbody>

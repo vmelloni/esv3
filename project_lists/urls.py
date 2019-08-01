@@ -11,4 +11,4 @@ urlpatterns = [
     path('details/<int:pk>/', DetailsView.as_view(), name='details'),
     path('details/<int:pk>/update/', ActivityUpdate.as_view(), name='update_activity'),
     path('details/<int:pk>/delete/', ActivityDelete.as_view(), name='delete_activity'),
-]
+   ]
