@@ -13,6 +13,9 @@ class ProjectList(models.Model):
         User, on_delete=models.CASCADE, related_name='project_lists')
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+    estimate_mtv = models.DecimalField(max_digits=100, decimal_places=2, default=0.00, null=True)
+    estimate_mtvm = models.DecimalField(max_digits=100, decimal_places=2, default=0.00, null=True)
+    estimate_pcu = models.DecimalField(max_digits=100, decimal_places=2, default=0.00, null=True)
 
     class Meta:
         ordering = ('-date_created',)

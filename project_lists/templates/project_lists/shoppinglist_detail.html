@@ -63,13 +63,15 @@
     <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="DeleteItem"
          tabindex="-1" role="dialog" style="color: black">
     </div>
-
+    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="EstimationModal"
+         tabindex="-1" role="dialog" style="color: black">
+    </div>
     <div class="row" style="margin-top:-20px">
         <div class="col-md-8 ml-auto mr-auto">
             <a href="{% url 'project_lists:dashboard' %}"
                class="btn btn-neutral pull-left">❮ Back to Dashboard</a>
             <div class="card card-plain" style="color:black">
-                <div class="card-body bg-white" style="opacity: .85">
+                <div class="card-body bg-white" style="opacity: .65">
                     {% if form.errors %}
                         <div class="alert alert-danger" role="alert">
                             <div class="container">
@@ -114,17 +116,24 @@
                            class="padding-five btn btn-primary btn-round float-right"><i
                                 class="padding-five material-icons">add</i>
                         </a>
-                        <div class="text-left">
-                            <button type="button" class="btn btn-primary">Estimate</button>
+                        <div class="text-left" >
+                            <button type="button" rel="tooltip"
+                                                    class="alien-modal-trigger btn btn-primary "
+                                                    style="background-color: #1858cd; font-size: 15px"
+                                                    title="Estimate"
+                                                    data-action="{% url 'project_lists:mtv' object.id  %}"
+                                                    data-modal_id="#EstimationModal"
+                                                    data-form_id="#mtv-form"
+                                                    data-list_name={{ object.id  }}>
+
+                                            Estimate </button>
                         </div>
                     </div>
-                    <div class="table-responsive ">
+                    <div class="table-responsive " >
                         <table class="table">
                             <tr>
                                 <h6>
-                                    Activities for <strong><em
-                                        style="color: orange">{{ object.name }}</em></strong>
-                                      project.
+                                    Activities for {{ object.name }} project.
                                  </h6>
                             </tr>
                             {% if activity %}

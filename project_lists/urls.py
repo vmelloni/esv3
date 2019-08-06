@@ -1,7 +1,8 @@
 from django.urls import path
 
+
 from .views import (DashBoardView, ProjectUpdate, ProjectDelete,
-                    DetailsView, ActivityUpdate, ActivityDelete)
+                    DetailsView, ActivityUpdate, ActivityDelete, ActivityMTV)
 
 app_name = "project_lists"
 urlpatterns = [
@@ -11,4 +12,5 @@ urlpatterns = [
     path('details/<int:pk>/', DetailsView.as_view(), name='details'),
     path('details/<int:pk>/update/', ActivityUpdate.as_view(), name='update_activity'),
     path('details/<int:pk>/delete/', ActivityDelete.as_view(), name='delete_activity'),
+    path('MTV/<int:pk>/', ActivityMTV.as_view(), name='mtv'),
    ]

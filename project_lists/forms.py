@@ -6,7 +6,6 @@ from .models import ProjectList, Activity
 
 
 class ProjectListForm(ModelForm):
-
     class Meta:
         model = ProjectList
         fields = ("name",)
@@ -23,7 +22,6 @@ class ProjectListForm(ModelForm):
 
 
 class ActivityForm(ModelForm):
-
     class Meta:
         model = Activity
         fields = ("name", "optimist", "average", "pessimist",)
@@ -55,3 +53,6 @@ class ActivityForm(ModelForm):
                 "autocomplete": "random_name",
             }),
         }
+
+
+

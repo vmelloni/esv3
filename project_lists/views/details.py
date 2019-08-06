@@ -73,3 +73,5 @@ class ActivityDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         context = super(ActivityDelete, self).get_context_data(**kwargs)
         context['message'] = self.success_message
         return context
+
+
