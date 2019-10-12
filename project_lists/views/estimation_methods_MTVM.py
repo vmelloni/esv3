@@ -46,6 +46,7 @@ class MTVMEstimate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
                 midHighRisk = midHighRisk + (t3*(o_value + 4 * a_value + p_value) + 3 * (1-t3) * (o_value + p_value))/ 6
 
             mid = midLowRisk + midMidRisk + midHighRisk
+            
 
         mid = round(mid, 2)
         context['message'] = mid
