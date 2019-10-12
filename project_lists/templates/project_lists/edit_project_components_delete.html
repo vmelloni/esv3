@@ -1,0 +1,31 @@
+{% extends 'project_lists/base.html' %}
+{% block title %}
+    Eliminar componente
+{% endblock %}
+{% block content %}
+<div class="modal-dialog" role="">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="color:black" >Eliminar Componente </h5>
+        </div>
+        <div class="modal-body">
+            <div class="card-body">
+                <form class="form" id="delete-form" method="POST">
+                    {% csrf_token %}
+                    <div class="input-group form-group-no-border input-lg center">
+                        <p style="color:black">Está seguro de que de sea eliminar el componente "{{ component_name }}" ? </p>
+                    </div>
+                    <span>
+                        <button type="submit"
+                                class="btn btn-primary btn-round">
+                            Si, eliminar todo
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-round"onClick="javascript:history.go(-1);">Cerrar</button>
+                    </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

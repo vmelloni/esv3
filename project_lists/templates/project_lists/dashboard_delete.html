@@ -1,0 +1,35 @@
+{% extends 'project_lists/base.html' %}
+{% block title %}
+    Eliminar Proyecto
+{% endblock %}
+{% block content %}
+<div class="modal-dialog" role="">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="color:black" >Eliminar Proyecto </h5>
+        </div>
+        <div class="modal-body">
+            <div class="card-body">
+                <form class="form" id="delete-form" method="POST">
+                    {% csrf_token %}
+                    <div class="input-group form-group-no-border input-lg center">
+                        <p style="color:black">Está seguro de que de sea eliminar el proyecto " {{ project_name }} " ? </p>
+                        <p style="color:black">Todos los datos asociados al mismo serán eliminados y no podrán ser recuperados.</p>
+                    </div>
+                    <span>
+                        <button type="submit"
+                                class="btn btn-primary btn-round">
+                            Si, eliminar todo
+                        </button>
+                        <input class="input-group form-group-no-border input-lg" style="display:none" name="id" value={{project}} />
+                        <button type="button" class="btn btn-secondary btn-round"
+                        onclick="location.href = {% url 'project_lists:dashboard' %}" >No, volver
+                        </button>
+                    </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

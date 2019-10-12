@@ -35,10 +35,20 @@
                 </a>
             </div>
             <div class="collapse navbar-collapse justify-content-end"
-                 id="navigation" data-nav-image="{% static "main/img/blurred-image-1.jpg" %}">
+                 id="navigation">
+            <!-- <div class="collapse navbar-collapse justify-content-end"
+                 id="navigation" data-nav-image="{% static "main/img/blurred-image-1.jpg" %}"> -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/parseendavid/django-shopping-list/issues">Have an issue?</a>
+                            <div class="nav-link">
+                                    <a href="{% url 'accounts:login' %}"
+                                        class="btn "
+                                        style ="background-color: #1858cd; font-size: 13px"
+                                       
+                                     >Login</a>
+                                   
+                                </div>
+                        <!-- <a class="nav-link" href="https://github.com/parseendavid/django-shopping-list/issues">Have an issue?</a> -->
                     </li>
                 </ul>
             </div>
@@ -48,13 +58,15 @@
     <div class="wrapper">
         <div class="page-header page-header-small">
             <div class="page-header-image" data-parallax="true"
-                 style="background-image: url('{% static "main/img/bg6.jpg" %}')";>
+                 style="background-image: url('{% static "main/img/bg6.jpg" %}')">
             </div>
             <div class="container">
                 <div class="content-center">
-                    <h3 class="title">Welcome to ESV3+
+                    <h2 class="title">Welcome to ESV3+
                        </h3>
-                    <div class="text-center">
+                       <h3 class="title">A tool to estimate your software project
+                        </h3>
+                   <!--  <div class="text-center">
                         <a href="#" class="btn btn-primary btn-icon btn-round">
                             <i class="fa fa-facebook-square"></i>
                         </a>
@@ -64,16 +76,13 @@
                         <a href="#" class="btn btn-primary btn-icon btn-round">
                             <i class="fa fa-google-plus"></i>
                         </a>
-                    </div>
+                    </div> -->
                     <br>
                     <div class="text-center btn-group-lg">
                         <a href="{% url 'accounts:signup' %}"
-                           class="btn "style="background-color: #4CD964"
-                        >Signup</a>
-                        <a href="{% url 'accounts:login' %}"
                            class="btn "
-                           style="background-color: #00bbff; width: 103px"
-                        >Login</a>
+                           style ="background-color: #1858cd; font-size: 15px"
+                        >SIGNUP</a>
                     </div>
                 </div>
             </div>
@@ -82,8 +91,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto text-center">
-                        <h2 class="title">What is this all about?</h2>
-                        <h5 class="description">Learn to manage finances well by starting with small steps. Then eventually, you'll get the hang of it and realize how advantageous it is to have a shopping list for your next  trip to the mall. So the next time you plan your needed items, don't forget about these advantages. “Make me a shopping list?” - no, thank you. You can handle it. We hope that through these tips, you'll be able to master the art of budgeting slowly but surely.</h5>
+                        <h2 class="title">What and why ESV3+?</h2>
+                        <h5 class="description">
+                                Software projects' estimation has been a problem for many years now and we believe that more work on standarizing this field is needed. Maybe due to the lack of knowledge in this topic or maybe because maths are too hard, formal estimation methods seem to be weirdly applied.
+                            <h5 class="description">
+                                Maths and project management theories are providing us with different techniques to solve this problem, based on risks, based on complexity, based on use cases, etc ... but as those methods take too much time in this quick moving reality, we usually apply the experts judgements when it comes to give extimates for a software project.
+                            </h5>
+                            <h5 class="description">
+                                This app tries to help you to have an estimate that is (hopefully) more accurate than the one you can give by just giving it based on a quick look.
+                            </h5>
                     </div>
                 </div>
                 <div class="separator separator-primary"></div>
@@ -96,7 +112,7 @@
                             </div>
                             <!-- Second image on the left side of the article -->
                             <div class="image-container"
-                                 style="background-image: url('{% static "main/img/bg3.jpg"%}')";></div>
+                                 style="background-image: url('{% static "main/img/bg3.jpg"%}')"></div>
                         </div>
                         <div class="col-md-5">
                             <!-- First image on the right side, above the article -->
@@ -104,15 +120,31 @@
                                  style="background-image: url('{% static "main/img/bg1.jpg" %}')";></div>
                             <h5>
                             <strong>
-                                If you still need a little convincing, we give you 10 reasons why you should make shopping list in a regular basis:
+                                How does this app work?
                             </strong>
                             </h5>
                             <p>
-                                1. <strong>Failing to plan, is planning to
-                                fail.</strong>
-                                            Making a list before you go shopping will help you think ahead about your purchases. By doing so, you’ll have the chance to make specific shopping goals. If you plan what you need to buy, it will be less likely that you’ll end up buying the whole store.
-                            </p>
+                                1. <strong>Maths</strong>
+                                <p>   After some questions, the app will calculate the project's durantion based on three formal methods. 
+                                    You don't have to worry about the math, but if you want to do some research, you should know that we are using the "Three Values Method", the "Enhaced Three Values Method" and "Use Case Points Method".
+                           
+                                </p>
+                            </p> 
+                            <p>
+                                2. <strong>The methods</strong>
+                                <p>    Because at first we usually need to estimate a software project with little amount of information on the table, 
+                                    and these methods allow to estimate without going too in depth in the project.
+                           
+                                </p>
+                            </p> 
+                            <p>
+                                3. <strong>Pick one or pick  them all</strong>
+                                This app allows you to estimate your project using one method or all of them at the same time, so the estimation is as accurate as possible.
+                                Just answer the questions you'll be asked and click "Estimate"!
+                                <p>   
 
+                                </p>
+                            </p> 
 
                         </div>
                     </div>

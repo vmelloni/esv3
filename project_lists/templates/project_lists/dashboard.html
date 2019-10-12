@@ -1,43 +1,9 @@
 {% extends 'project_lists/base.html' %}
 {% block title %}
-    Dashboard
+    Inicio
 {% endblock %}
 {% block content %}
-    <div class="modal modal-dialog modal-login modal-clear" id="AddList" tabindex="-1"
-         role="dialog"
-         style="color: black">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="card-body">
-                        <form class="form" method="POST"
-                              action="{% url 'project_lists:dashboard' %}">
-                            {% csrf_token %}
-                            <span>
-                        <div class="input-group form-group-no-border input-lg">
-                            {{ form.name }}
-                        </div>
-                            <button type="submit"
-                                    class="btn btn-primary btn-round btn-lg btn-block">
-                                ADD
-                            </button>
-                    </span>
-                        </form>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="FormModal"
          tabindex="-1" role="dialog" style="color: black">
@@ -53,15 +19,14 @@
                                 <div class="alert-icon">
                                     <i class="now-ui-icons objects_support-17"></i>
                                 </div>
-                                <strong>Oh snap!</strong>
                                 {% for error in form.errors %}
                                     {{ form.errors.as_text | escape }}
                                 {% endfor %}
                                 <button type="button" class="close" data-dismiss="alert"
                                         aria-label="Close">
-						<span aria-hidden="true">
-							<i class="now-ui-icons ui-1_simple-remove"></i>
-						</span>
+                  <span aria-hidden="true">
+                     <i class="now-ui-icons ui-1_simple-remove"></i>
+                  </span>
                                 </button>
                             </div>
                         </div>
@@ -72,102 +37,75 @@
                                 <div class="alert-icon">
                                     <i class="now-ui-icons ui-2_like"></i>
                                 </div>
-                                <strong>Well done!</strong>
+                                <strong>Agregado!</strong>
                                 {% for message in messages %}
                                     {{ message }}
                                 {% endfor %}
                                 <button type="button" class="close" data-dismiss="alert"
                                         aria-label="Close">
-  						<span aria-hidden="true">
-							<i class="now-ui-icons ui-1_simple-remove"></i>
-						</span>
+                  <span aria-hidden="true">
+                     <i class="now-ui-icons ui-1_simple-remove"></i>
+                  </span>
                                 </button>
                             </div>
                         </div>
                     {% endif %}
                     <div class="pull-left">
-                        <a href="#"
-                           data-toggle="modal"
-                           data-target="#AddList"
-                           class="padding-five btn btn-primary btn-round float-right">
+                        <a href="{% url 'project_lists:dashboard_add' owner.id %}"
+                            class="padding-five btn btn-primary btn-round float-right">
                             <i class="material-icons padding-five">add</i>
                         </a>
                     </div>
                     <div class="table-responsive ">
-                        <table class="table">
+                       <table class="table table-hover table-fixed">
                             {% if project_lists %}
                                 <thead class="">
                                 <tr>
+                                    
+                                    <th>
+                                        Proyectos
+                                    </th>
+                                    <th>
+                                        Creado el...
+                                    </th>
                                     <th class="text-center">
-                                        #
+                                        Actualizado el...
                                     </th>
-                                    <th>
-                                        Project Name
+                                    <th class="text-right">
+                                         Acciones
                                     </th>
-                                    <th>
 
-                                    </th>
-                                    <th class="text-center">
-                                        Creation Date
-                                    </th>
-                                    <th class="text-center">
-                                        Last Updated
-                                    </th>
-                                    <th class="text-right">
-                                        Actions
-                                    </th>
-                                    <th class="text-right">
-                                        Estimations
-                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>
+
                                 {% for list in project_lists %}
                                     <tr>
-                                        <td class="text-center">
-                                            {{ forloop.counter }}
-                                        </td>
+                                        
                                         <td>
                                             {{ list.name }}
-                                        </td>
-                                        <td>
-<!--                                            <a style="color: blue"
-                                               href="{% url 'project_lists:details' list.id %}">Details
-                                            </a>-->
                                         </td>
                                         <td class="text-center">
                                             {{ list.date_created }}
                                         </td>
                                         <td class="text-center">
-                                            {{ list.date_updated | default:"None" }}
+                                            {{ list.date_updated }}
                                         </td>
                                         <td class="text-right">
-                                            <button type="button"
-                                                    rel="tooltip"
-                                                    class="alien-modal-trigger btn btn-info
-                                                           btn-icon btn-sm "
-                                                    title="Update Project."
-                                                    data-action="{% url 'project_lists:update_list' list.id %}"
-                                                    data-modal_id="#FormModal"
-                                                    data-form_id="#update-form">
-                                                <i class="now-ui-icons users_single-02"></i>
+                                             <a align="left" class="nav-link" href="{% url 'project_lists:update_list' list.id %}">Cambiar Nombre</a>
+                                             <a align="left" class="nav-link" href="{% url 'project_lists:edit_project_components' list.id %}">Componentes</a>
+                                             <a align="left"  class="nav-link" href="{% url 'project_lists:dashboard_delete' list.id %}">Eliminar</a>
+                                             <a align="left" class="nav-link" href="{% url 'project_lists:edit_project_components' list.id %}">Descargar</a>
 
-                                            </button>
-                                            <button type="button"
-                                                    rel="tooltip"
-                                                    class="alien-modal-trigger btn btn-danger btn-icon btn-sm "
-                                                    title="Delete Project."
-                                                    data-action="{% url 'project_lists:delete_list' list.id %}"
-                                                    data-modal_id="#FormModal"
-                                                    data-form_id="#delete-form">
-                                                <i class="now-ui-icons ui-1_simple-remove"></i>
-                                            </button>
                                         </td>
                                         <td class="text-right">
-                                            <a class="nav-link" href="{% url 'project_lists:details' list.id %}">MTV</a>
-                                            <a class="nav-link" href="{}">MTVM</a>
-                                            <a class="nav-link" href="{}">PCU</a>
+                                             <a  align="left" class="nav-link" href="{% url 'project_lists:edit_project_components' list.id %}">Duplicar</a>
+                                             <a  align="left" class="nav-link" href="{% url 'project_lists:estimate' list.id %}">Estimar</a>
+                                             <a  align="left" class="nav-link" href="{% url 'project_lists:edit_project_components' list.id %}">Estimación Avanzada</a>
+                                             <a</a>                                             <a</a>
+
                                         </td>
+                                       
                                     </tr>
                                 {% endfor %}
                                 </tbody>

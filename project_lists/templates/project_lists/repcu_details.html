@@ -1,0 +1,213 @@
+{% extends 'project_lists/base.html' %}
+{% block title %}
+    RePCU para {{ object.name }}
+{% endblock %}
+{% block content %}
+    <div class="modal modal-dialog modal-login modal-clear" id="AddList" tabindex="-1"
+         role="dialog"
+         style="color: black">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Component</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <form class="form" method="POST"
+                              action="">
+                            {% csrf_token %}
+                            <label class="form-check-label">
+                                {{ form.name.label }}
+                            </label>
+                            <div class="input-group form-group-no-border input-lg">
+                                {{ form.name }}
+                            </div>
+                            <label class="form-check-label">
+                                {{ form.optimist.label }}
+                            </label>
+                            <div class="input-group form-group-no-border input-lg">
+                                {{ form.optimist }}
+                            </div>
+                            <label class="form-check-label">
+                                {{ form.pessimist.label }}
+                            </label>
+                            <div class="input-group form-group-no-border input-lg">
+                                {{ form.pessimist }}
+                            </div>
+                               <label class="form-check-label">
+                                {{ form.average.label }}
+                            </label>
+                            <div class="input-group form-group-no-border input-lg">
+                                {{ form.average }}
+                            </div>
+                            <button type="submit"
+                                    class="btn btn-primary btn-round btn-lg btn-block">
+                                ADD
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="EditItem"
+         tabindex="-1" role="dialog" style="color: black">
+    </div>
+    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="DeleteItem"
+         tabindex="-1" role="dialog" style="color: black">
+    </div>
+    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="EstimationModal"
+         tabindex="-1" role="dialog" style="color: black">
+    </div>
+    <div class="row" style="margin-top:-20px">
+        <div class="col-md-8 ml-auto mr-auto">
+                <a href="{% url 'project_lists:dashboard' %}"
+                class="btn btn-neutral pull-left">❮ Volver al inicio</a>
+            <div class="card card-plain" style="color:black">
+                <div class="card-body bg-white" style="opacity: .65">
+                    {% if form.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            <div class="container">
+                                <div class="alert-icon">
+                                    <i class="now-ui-icons objects_support-17"></i>
+                                </div>
+                                <strong>Oh snap!</strong>
+                                {% for error in form.errors %}
+                                    {{ form.errors.as_text | escape }}
+                                {% endfor %}
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-label="Close">
+						<span aria-hidden="true">
+							<i class="now-ui-icons ui-1_simple-remove"></i>
+						</span>
+                                </button>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if messages %}
+                        <div class="alert alert-success" role="alert">
+                            <div class="container">
+                                <div class="alert-icon">
+                                    <i class="now-ui-icons ui-2_like"></i>
+                                </div>
+                                <strong>Well done!</strong>
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-label="Close">
+  						<span aria-hidden="true">
+							<i class="now-ui-icons ui-1_simple-remove"></i>
+						</span>
+                                </button>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="pull-left">
+                        <a href="" data-toggle="modal"
+                           data-target="#AddList"
+                           class="padding-five btn btn-primary btn-round float-right"><i
+                                class="padding-five material-icons">add</i>
+                        </a>
+                        <div class="text-left" >
+                            <button type="button" rel="tooltip"
+                                                    class="alien-modal-trigger btn btn-primary "
+                                                    style="background-color: #1858cd; font-size: 15px"
+                                                    title="Estimate"
+                                                    data-action="{% url 'project_lists:repcu_estimate' object.id  %}"
+                                                    data-modal_id="#EstimationModal"
+                                                    data-form_id="#mtv-form"
+                                                    data-list_name={{ object.id  }}>
+
+                                            Estimate </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive " >
+                        <table class="table">
+                            <tr>
+                                <h6>
+                                    Activities for {{ object.name }} project.
+                                 </h6>
+                            </tr>
+                            {% if Component %}
+                                <thead class="">
+                                <tr>
+                                    <th class="text-center">
+                                        #
+                                    </th>
+                                    <th>
+                                        Component Name
+                                    </th>
+                                    <th>
+                                        Optimist Estimate
+                                    </th>
+                                    <th>
+                                        Average Estimate
+                                    </th>
+                                    <th>
+                                        Pessimist Estimate
+                                    </th>
+                                    <th class="text-right">
+                                        Last Updated
+                                    </th>
+                                    <th class="text-right">
+                                        Actions
+                                    </th>
+<!--                                      <th class="text-right">-->
+<!--                                        Estimate-->
+<!--                                    </th>-->
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in Component %}
+                                    <tr>
+                                        <td class="text-center">
+                                            {{ forloop.counter }}
+                                        </td>
+                                        <td>
+                                            {{ item.name }}
+                                        </td>
+                                        <td>
+                                            {{ item.optimist }}
+                                        </td>
+                                        <td>
+                                            {{ item.average}}
+                                        </td>
+                                        <td>
+                                            {{ item.pessimist}}
+                                        </td>
+                                        <td class="text-right">
+                                            {{ item.date_updated }}
+                                        </td>
+                                        <td class="text-right">
+                                           
+                                        </td>
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            {% else %}
+                                <br>
+                                <br>
+                                <thead>
+                                <tr>
+                                    ********** NO ACTIVITIES ADDED YET, PLEASE CREATE ONE **********
+                                </tr>
+                                </thead>
+                            {% endif %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
