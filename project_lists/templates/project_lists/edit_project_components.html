@@ -3,23 +3,28 @@
     Componentes
 {% endblock %}
 {% block content %}
+
     <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="FormModal"
          tabindex="-1" role="dialog" style="color: black">
     </div>
-
     <div class="row" style="margin-top:-20px">
         <div class="col-md-8 ml-auto mr-auto">
             <div class="card card-plain" style="color:black">
                     <a href="{% url 'project_lists:dashboard' %}"
                     class="btn btn-neutral pull-left">❮ Volver al inicio</a>
+                    <div>
+                            <a href="{% url 'project_lists:estimate'  project_id %}"
+                            class="btn btn-neutral float-left"  style="color:white; background:#3498DB ;font-size: 12px">
+                           <strong> Estimar</strong>  </a>
+                    </div>
+            <div class="card card-plain" style="color:black">
                 <div class="card-body bg-white" style="opacity:.65">
                     {% if form.errors %}
                         <div class="alert alert-danger" role="alert">
                             <div class="container">
                                 <div class="alert-icon">
                                     <i class="now-ui-icons objects_support-17"></i>
-                                </div>
-                               
+                                </div>                               
                                 {% for error in form.errors %}
                                     {{ form.errors.as_text | escape }}
                                 {% endfor %}
@@ -38,7 +43,7 @@
                                 <div class="alert-icon">
                                     <i class="now-ui-icons ui-2_like"></i>
                                 </div>
-                                <strong>Agregado!</strong>
+                                
                                 {% for message in messages %}
                                     {{ message }}
                                 {% endfor %}
@@ -51,20 +56,22 @@
                             </div>
                         </div>
                     {% endif %}
+                    
                     <div class="pull-left">
                         <a href="{% url 'project_lists:add_components' project_id %}"
                             class="padding-five btn btn-primary btn-round float-right">
-                            <i class="material-icons padding-five">add</i>
+                            <i class="material-icons padding-five">+</i>
                         </a>
                     </div>
-                    <div class="table-responsive ">
+                    <div>
+                     <h5 class="modal-title" style="color:grey;font-size: small;" align="left">Componentes del proyecto: {{ project_name }} </h5>
+                     <h1 class="modal-title" style="color:grey;font-size: small;" align="left">Unidad de tiempo: {{ project_time}} </h1>
+                    </div>
+                     <div class="table-responsive ">
                         <table class="table table-hover table-fixed">
                             {% if components %}
                                 <thead class="">
                                 <tr>
-                                    <th class="text-center">
-                                        #
-                                    </th>
                                     <th>
                                         Componentes
                                     </th>
@@ -77,9 +84,6 @@
                                 <tbody>
                                 {% for component in components %}
                                     <tr>
-                                        <td class="text-center">
-                                            {{ forloop.counter }}
-                                        </td>
                                         <td>
                                             {{ component.name }}
                                         </td>
@@ -96,14 +100,19 @@
                                 <br>
                                 <thead>
                                 <tr>
-                                    ********** TODAVIA NO SE HAN AGREGADO COMPONENTES **********
+                                        TODAVÍA NO HAS AGREGADO COMPONENTES, POR FAVOR CREA UNO UTILIZANDO EL BOTÓN DE + 
                                 </tr>
                                 </thead>
                             {% endif %}
                         </table>
+                        
                     </div>
                 </div>
-            </div>
+            </div>  
+        </div>
         </div>
     </div>
 {% endblock %}
+
+
+

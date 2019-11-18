@@ -7,39 +7,43 @@
     <div class="modal-content">
        <div class="modal-header d-block">
             <div class="d-flex">
-             <h3 class="modal-title" style="color:black">Estimar </h3>
+             <h5 class="modal-title" style="color:black">Estimar el proyecto {{ project_name }} </h5>
 
              <button type="button" class="close" onClick="javascript:history.go(-1);">
                     <span aria-hidden="true">&times;</span>
              </button>
             </div>
-            <h5 class="modal-title" style="color:black" align="left">Proyecto: {{ project_name }} </h5>
+           
         </div>
          <div class="modal-">
         <div class="modal-body">
-            <div class="card-body">
+                <p class="modal-title" style="color:black; font-size: small;">Selecciona un método de estimación</p>
+            <div class="card-body" >
                 <form class="form" method="POST" >
                     {% csrf_token %}
                     <span>
                         <label class="form-check-label">
                             {{ form.name.label }}
                         </label>
-                        <div class="input-group form-group-no-border input-lg">
+                        <div class="input-group input-lg " style="display: block;">
+
                            {{ form.type_estimate }}
+
                         </div>
                        <input class="input-group form-group-no-border input-lg" style="display:none" name="id" value={{project_id}} />
                             <button type="submit"
                                     class="btn btn-primary btn-round btn-lg btn-block">
-                                OK
+                                Continuar
                             </button>
                     </span>
                 </form>
             </div>
         </div>
          <div class="modal-footer">
-          <button type="button" class="btn btn-secondary"onClick="javascript:history.go(-1);">Cerrar</button>
+         <!-- <button type="button" class="btn btn-secondary"onClick="javascript:history.go(-1);">Volver</button> -->
          </div>
     </div>
 </div>
+ </div>
 
 {% endblock %}

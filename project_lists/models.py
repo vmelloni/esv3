@@ -15,6 +15,7 @@ class ProjectList(models.Model):
     estimate_mtv = models.DecimalField(max_digits=100, decimal_places=2, default=0.00, null=True)
     estimate_mtvm = models.DecimalField(max_digits=100, decimal_places=2, default=0.00, null=True)
     estimate_pcu = models.DecimalField(max_digits=100, decimal_places=2, default=0.00, null=True)
+    time = models.IntegerField(default=1, null=True)
 
     # averageValue = models.DecimalField(max_digits=100, decimal_places=2, default=0.00, null=True)
 
@@ -34,6 +35,7 @@ class Component(models.Model):
     updatedDate = models.DateTimeField(auto_now=True)
     riskValue = models.IntegerField(default=1, null=True)
     actorsAmount = models.IntegerField(default=0, null=True)
+    weightCU = models.IntegerField(default=0, null=True)
 
     class Meta:
         ordering = ('-createdDate',)
@@ -44,7 +46,7 @@ class UseCase(models.Model):
     idComponent = models.ForeignKey(
         Component, on_delete=models.CASCADE)
     name = models.CharField(_('usecase_name'), max_length=100, null=True)
-    actorsAmount = models.IntegerField(default=0, null=True)
+    weightCU = models.IntegerField(default=0, null=True)
 
 
 class TechFactors(models.Model):
@@ -80,6 +82,14 @@ class EnvFactors(models.Model):
     difficultProgrammingLanguage = models.DecimalField(max_digits=8, decimal_places=2, default=0.00, null=True)
 
 
+class Actors(models.Model):
+    """This is the model for Actors in a project"""
+    idComponent = models.ForeignKey(
+        Component, on_delete=models.CASCADE)
+    simple = models.IntegerField(default=0, null=True)
+    average = models.IntegerField(default=0, null=True)
+    complex = models.IntegerField(default=0, null=True)
+    critical = models.IntegerField(default=0, null=True)
 # class ComponentR(Component):
 #     risk = models.DecimalField(max_digits=8, decimal_places=2, default=0.00, null=True)
 
@@ -91,3 +101,23 @@ class Estimate(models.Model):
         ('3', 'RePCU'),
     ]
     type_estimate = models.CharField(max_length=1, choices=ESTIMATE_CHOICES)
+
+
+class Weight(models.Model):
+    WEIGHT_CHOICES = [
+        ('1-3', '5'),
+        ('5-8', '10'),
+        ('9-15', '15'),
+        ('más de 15', '20'),
+    ]
+    type_transaction = models.CharField(max_length=1, choices=WEIGHT_CHOICES)
+
+
+class TypeActors(models.Model):
+    ACTORS_CHOICES = [
+        ('Simple', '1'),
+        ('Promedio', '2'),
+        ('Complejo', '3'),
+        ('Crítico', '4'),
+    ]
+    type_actors = models.CharField(max_length=1, choices=ACTORS_CHOICES)

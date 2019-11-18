@@ -1,0 +1,233 @@
+{% extends 'project_lists/base.html' %}
+{% block title %}
+    Factores Técnicos
+{% endblock %}
+{% block content %}
+
+
+    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="EstimationModal"
+         tabindex="-1" role="dialog" style="color: black">
+    </div>
+    <div class="row" style="margin-top:-20px">
+        <div class="col-md-7 ml-auto mr-auto">
+                <a href="{% url 'project_lists:dashboard' %}"
+                class="btn btn-neutral pull-left">❮ Volver al inicio</a>
+            
+                <div class="card-plain table-results" style="color:black">
+                <div class="card-body bg-white" style="opacity: .65">
+                    {% if form.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            <div class="container">
+                                <div class="alert-icon">
+                                    <i class="now-ui-icons objects_support-17"></i>
+                                </div>
+                                <strong>Ha ocurrido un error.</strong>
+                                {% for error in form.errors %}
+                                    {{ form.errors.as_text | escape }}
+                                {% endfor %}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">
+                                          <i class="now-ui-icons ui-1_simple-remove"></i>
+                                        </span>
+                                </button>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if messages %}
+                        <div class="alert alert-success" role="alert">
+                            <div class="container">
+                                <div class="alert-icon">
+                                    <i class="now-ui-icons ui-2_like"></i>
+                                </div>
+                                
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">
+                                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                                  </span>
+                                </button>
+
+                            </div>
+                        </div>
+                    {% endif %}
+
+
+
+
+                    
+                    <div class="row">
+
+                            <div class="col-6">
+                                <label style="font-weight:bold"> Factor Técnico</label>
+                             </div>
+                              <div class="col-1">
+                                 <label style="font-weight:bold"> Ranking</label>
+                              </div>
+                    </div>
+
+                    <hr  style="margin:10px; margin-top:0px;" >
+                    <div class="card-body">
+                    <form method="POST" action='editTF/'>
+                    {% csrf_token %}
+                     <div class="row form-row spacer">
+                             <div class="col-6">
+                                     <label>Sistema Distribuido</label>
+                             </div>
+                             <div class="col-1">
+                                  <div class="input-group form-group-no-border input-lg">
+                                    <input type="number"  name="distributedSystem" step=".01" min="0.00" max="5.00" value={{techFactors.distributedSystem}}  required style="">
+
+                                </div>
+                              </div>
+                     </div>
+                     <div class="row form-row spacer">
+                         <div class="col-6">
+                                 <label>Procesamiento Interno complejo</label>
+                         </div>
+                         <div class="col-3">
+                             <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="complexInternalProcessing" step=".01" min="0.00" max="5.00" value={{techFactors.complexInternalProcessing}}  required style="">
+                             </div>
+                          </div>
+                     </div>
+                     <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>MultiplePlataforma</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                               <input type="number" name="crossPlatformSupport" step=".01" min="0.00" max="5.00" value={{techFactors.crossPlatformSupport}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+                      <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Seguridad personalizada</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="customSecurity" step=".01" min="0.00" max="5.00" value={{techFactors.customSecurity}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+                                  <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Dependecia de terceras partes</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="dependenceThirdPartyCode" step=".01" min="0.00" max="5.00" value={{techFactors.dependenceThirdPartyCode}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+                      <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Facilidad de cambio</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="easyToChange" step=".01" min="0.00" max="5.00" value={{techFactors.easyToChange}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+                    <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Eficiencia del usuario final</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="endUserEfficency" step=".01" min="0.00" max="5.00" value={{techFactors.endUserEfficency}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+                      <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Alta Concurrencia</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="highlyConcurrent" step=".01" min="0.00" max="5.00" value={{techFactors.highlyConcurrent}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+                      <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Fácil de instalar</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="installationEasiness" step=".01" min="0.00" max="5.00" value={{techFactors.installationEasiness}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+                      <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Tiempo de respuesta</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="responseTime" step=".01" min="0.00" max="5.00" value={{techFactors.responseTime}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+                      <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Código reutilizable</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="reusableCode" step=".01" min="0.00" max="5.00" value={{techFactors.reusableCode}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+                      <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Usabilidad</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                            <input type="number" name="usability" step=".01" min="0.00" max="5.00" value={{techFactors.usability}}  required style="">
+                           </div>
+                     </div>
+                      </div>
+                     <div class="row form-row spacer">
+                     <div class="col-6">
+                           <label>Capacitación del usuario</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                            <input type="number" name="userTraining" step=".01" min="0.00" max="5.00" value={{techFactors.userTraining}}  required style="">
+                           </div>
+                     </div>
+                     </div>
+                         <div class="input-group form-group-no-border input-lg">
+                                  <input  type ="hidden"  name="project_id"  value={{project_id}} />
+                         </div>
+                     <div class="pull-left">
+                         <button type="submit" class="btn btn-neutral"style="color:white; background:#3498DB ;font-size: 12px" >
+                          <span class="glyphicon glyphicon-floppy-disk"> </span> <strong>Actualizar</strong>
+                        </button>
+                        <a href="{% url 'project_lists:repcu_details' project_id %}"
+                                class="btn btn-neutral float-left" style="color:#2471A3; font-size: 14px">
+                                 <span class="glyphicon glyphicon-arrow-left">  </span>&nbsp; Volver</a>
+                            </a>
+                     </div>
+
+                     </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+

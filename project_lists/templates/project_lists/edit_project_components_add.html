@@ -6,32 +6,31 @@
        <div class="modal-dialog" role="">
             <div class="modal-content">
                 <div class="modal-header d-block">
-            <div class="d-flex">
-                 <h3 class="modal-title" style="color:black">Agregar Componente </h3>
+                <div class="d-flex">
+                    <h4 class="modal-title" style="color:black">Agregar componente al proyecto: {{ project_name }}  </h4>
 
-                 <button type="button" class="close" onClick="javascript:history.go(-1);">
-                        <span aria-hidden="true">&times;</span>
-                 </button>
+                    <button type="button" class="close" onClick="javascript:history.go(-1);">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <h5 class="modal-title" style="color:black" align="left">Proyecto: {{ project_name }} </h5>
             </div>
                 <div class="modal-body">
                     <div class="card-body">
                       <form class="form" method="POST"
                                  action="{% url 'project_lists:edit_project_components'  project_id %}">
                                {% csrf_token %}
-                               <spans>
+                               <span>
                                     <div class="input-group form-group-no-border input-lg">
                                         {{ form.name }}
                                     </div>
                                     <input class="input-group form-group-no-border input-lg" style="display:none" name="list" value={{project_id}} />
                                      <button type="submit" class="btn btn-primary btn-round btn-lg btn-block"> Agregar </button>
-                                </spans>
+                                </span>
                            </form>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"onClick="javascript:history.go(-1);">Cerrar</button>
+                    <!-- <button type="button" class="btn btn-secondary"onClick="javascript:history.go(-1);">Volver</button> -->
                  </div>
             </div>
         </div>

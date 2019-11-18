@@ -17,7 +17,7 @@ class ComponentsView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = 'project_lists/edit_project_components.html'
     form_class = ComponentForm
     success_url =  reverse_lazy('project_lists:edit_project_components')
-    success_message = "Componente agregado correctamente."
+    # success_message = "Componente agregado correctamente."
 
     def get_success_url(self):
         list = self.kwargs.get('pk')
@@ -27,12 +27,20 @@ class ComponentsView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         context = super(ComponentsView, self).get_context_data(**kwargs)
         context['project_id'] = self.kwargs.get('pk')
         context['components'] = Component.objects.filter(list_id=self.kwargs.get('pk'))
+        context['project_name'] = ProjectList.objects.get(id=self.kwargs.get('pk')).name
+        time = ProjectList.objects.get(id=self.kwargs.get('pk')).time
+        if time is 1:
+            context['project_time'] = "Días"
+        if time is 2:
+            context['project_time'] = "Horas"
+        if time is 3:
+            context['project_time'] = "Minutos"
         return context
 
     def form_valid(self, form):
         list_name = form.cleaned_data['name']
-        if Component.objects.filter(name=list_name).exists() and Component.objects.filter(list_id=self.kwargs.get('pk')).exists() :
-            form._errors['Component already exists'] = ''
+        if Component.objects.filter(name=list_name, list_id=self.kwargs.get('pk')).exists():
+            form._errors['Componente con ese nombre ya existe'] = ''
             return super(ComponentsView, self).form_invalid(form)
         form.list_id = list
         return super(ComponentsView, self).form_valid(form)

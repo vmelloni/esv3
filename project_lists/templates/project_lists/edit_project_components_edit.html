@@ -7,16 +7,16 @@
     <div class="modal-content">
         <div class="modal-header d-block">
             <div class="d-flex">
-             <h3 class="modal-title" style="color:black">Editar Componente </h3>
-
+             <h5 class="modal-title" style="color:black">Cambiar nombre al componente: {{component_name}}</h5>
+              <h1 class="modal-title" style="color:grey;font-size: small;" align="left">Unidad de tiempo: {{ project_time}} </h1>
              <button type="button" class="close" onClick="javascript:history.go(-1);">
                     <span aria-hidden="true">&times;</span>
              </button>
             </div>
-            <h5 class="modal-title" style="color:black" align="left">Proyecto: {{ project_name }} </h5>
         </div>
          <div class="modal-">
         <div class="modal-body">
+                <p class="modal-title" style="color:black; font-size: small;">Proyecto: {{ project_name }}</p>
             <div class="card-body">
                 <form class="form" id="edit-form" method="POST" >
                     {% csrf_token %}
@@ -30,14 +30,14 @@
                         <input class="input-group form-group-no-border input-lg" style="display:none" name="id" value={{component_id}} />
                             <button type="submit"
                                     class="btn btn-primary btn-round btn-lg btn-block">
-                                Editar
+                                Cambiar Nombre
                             </button>
                     </span>
                 </form>
             </div>
         </div>
          <div class="modal-footer">
-          <button type="button" class="btn btn-secondary"onClick="javascript:history.go(-1);">Cerrar</button>
+          <button type="button" class="btn btn-secondary"onClick="javascript:history.go(-1);">Volver</button>
          </div>
     </div>
 </div>

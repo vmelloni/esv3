@@ -3,82 +3,43 @@
     RePCU para {{ object.name }}
 {% endblock %}
 {% block content %}
-    <div class="modal modal-dialog modal-login modal-clear" id="AddList" tabindex="-1"
-         role="dialog"
-         style="color: black">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add New Component</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="card-body">
-                        <form class="form" method="POST"
-                              action="">
-                            {% csrf_token %}
-                            <label class="form-check-label">
-                                {{ form.name.label }}
-                            </label>
-                            <div class="input-group form-group-no-border input-lg">
-                                {{ form.name }}
-                            </div>
-                            <label class="form-check-label">
-                                {{ form.optimist.label }}
-                            </label>
-                            <div class="input-group form-group-no-border input-lg">
-                                {{ form.optimist }}
-                            </div>
-                            <label class="form-check-label">
-                                {{ form.pessimist.label }}
-                            </label>
-                            <div class="input-group form-group-no-border input-lg">
-                                {{ form.pessimist }}
-                            </div>
-                               <label class="form-check-label">
-                                {{ form.average.label }}
-                            </label>
-                            <div class="input-group form-group-no-border input-lg">
-                                {{ form.average }}
-                            </div>
-                            <button type="submit"
-                                    class="btn btn-primary btn-round btn-lg btn-block">
-                                ADD
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="EditItem"
-         tabindex="-1" role="dialog" style="color: black">
-    </div>
-    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="DeleteItem"
-         tabindex="-1" role="dialog" style="color: black">
-    </div>
-    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="EstimationModal"
-         tabindex="-1" role="dialog" style="color: black">
-    </div>
+
     <div class="row" style="margin-top:-20px">
         <div class="col-md-8 ml-auto mr-auto">
+              
                 <a href="{% url 'project_lists:dashboard' %}"
                 class="btn btn-neutral pull-left">❮ Volver al inicio</a>
-            <div class="card card-plain" style="color:black">
-                <div class="card-body bg-white" style="opacity: .65">
+
+                <div class="text-center"  >
+                    <a href="{% url 'project_lists:repcu_estimate' project.id  %}"
+                    class="btn btn-neutral float-left" style="color:white; background:#3498DB;font-size: 12px">
+                    <strong>Estimar</strong></a>
+                    <a href="{% url 'project_lists:techfactors' project.id   %}"
+                    class="btn btn-neutral float-left" style="color:white; background:#3498DB ;font-size: 12px">
+                    Factores Técnicos</a>
+                     <a href="{% url 'project_lists:envfactors' project.id   %}"
+                     class="btn btn-neutral float-left" style="color:white; background:#3498DB ;font-size:12px">
+                    Factores Ambientales</a>
+                 
+                 
+                 <a href="{% url 'project_lists:pdf_MTV' '3' project.id %}"
+                    class="btn btn-neutral float-right" style="color:white; background:#3498DB ;font-size: 12px">
+                    <span class="glyphicon glyphicon-download-alt"></span>  Descargar
+                </a>
+                <a href="{% url 'project_lists:edit_project_components' project.id  %}"
+                    class="btn btn-neutral float-right " style="color:white; background:#3498DB ;font-size: 12px">Editar Componentes</i>
+                 </a>
+              </div>
+                       
+                <div class="card card-plain" style="color:black">
+                    <div class="card-body bg-white" style="opacity: .65">
                     {% if form.errors %}
                         <div class="alert alert-danger" role="alert">
                             <div class="container">
                                 <div class="alert-icon">
                                     <i class="now-ui-icons objects_support-17"></i>
                                 </div>
-                                <strong>Oh snap!</strong>
+                                <strong>Oh no!</strong>
                                 {% for error in form.errors %}
                                     {{ form.errors.as_text | escape }}
                                 {% endfor %}
@@ -91,13 +52,14 @@
                             </div>
                         </div>
                     {% endif %}
+                   
                     {% if messages %}
                         <div class="alert alert-success" role="alert">
                             <div class="container">
                                 <div class="alert-icon">
                                     <i class="now-ui-icons ui-2_like"></i>
                                 </div>
-                                <strong>Well done!</strong>
+                                <strong>Bien!</strong>
                                 {% for message in messages %}
                                     {{ message }}
                                 {% endfor %}
@@ -110,86 +72,54 @@
                             </div>
                         </div>
                     {% endif %}
-                    <div class="pull-left">
-                        <a href="" data-toggle="modal"
-                           data-target="#AddList"
-                           class="padding-five btn btn-primary btn-round float-right"><i
-                                class="padding-five material-icons">add</i>
-                        </a>
-                        <div class="text-left" >
-                            <button type="button" rel="tooltip"
-                                                    class="alien-modal-trigger btn btn-primary "
-                                                    style="background-color: #1858cd; font-size: 15px"
-                                                    title="Estimate"
-                                                    data-action="{% url 'project_lists:repcu_estimate' object.id  %}"
-                                                    data-modal_id="#EstimationModal"
-                                                    data-form_id="#mtv-form"
-                                                    data-list_name={{ object.id  }}>
 
-                                            Estimate </button>
-                        </div>
+                     <div class="pull-left">
+                    <h5 class="modal-title" style="color:grey;font-size: medium;" align="left">Proyecto: {{ project_name }} </h5>
+                         <h1 class="modal-title" style="color:grey;font-size: small;" align="left">Unidad de tiempo: {{ project_time}} </h1>
+                    <div class="text-right " >
+
                     </div>
+
+                     
+
+                    </div>
+
                     <div class="table-responsive " >
                         <table class="table">
-                            <tr>
-                                <h6>
-                                    Activities for {{ object.name }} project.
-                                 </h6>
-                            </tr>
-                            {% if Component %}
+                            {% if components %}
                                 <thead class="">
                                 <tr>
-                                    <th class="text-center">
-                                        #
+                                    <th>
+                                       Componente
                                     </th>
                                     <th>
-                                        Component Name
+                                       Peso CU
                                     </th>
                                     <th>
-                                        Optimist Estimate
+                                       Peso Actores
                                     </th>
-                                    <th>
-                                        Average Estimate
+                                     <th>
+                                       Acciones
                                     </th>
-                                    <th>
-                                        Pessimist Estimate
-                                    </th>
-                                    <th class="text-right">
-                                        Last Updated
-                                    </th>
-                                    <th class="text-right">
-                                        Actions
-                                    </th>
-<!--                                      <th class="text-right">-->
-<!--                                        Estimate-->
-<!--                                    </th>-->
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for item in Component %}
+                                {% for item in components %}
                                     <tr>
-                                        <td class="text-center">
-                                            {{ forloop.counter }}
-                                        </td>
                                         <td>
                                             {{ item.name }}
                                         </td>
                                         <td>
-                                            {{ item.optimist }}
+                                            {{ item.weightCU }}
                                         </td>
-                                        <td>
-                                            {{ item.average}}
+                                         <td>
+                                            {{ item.actorsAmount }}
                                         </td>
-                                        <td>
-                                            {{ item.pessimist}}
+                                       <td class="text-right"> 
+                                             <a  align="center" class="nav-link" href="{% url 'project_lists:actors' item.id %}">Actores</a>
+                                             <a  align="center" class="nav-link" href="{% url 'project_lists:cu' item.id %}">Casos de Uso</a>
+                                             <a  align="center" class="nav-link" href="{% url 'project_lists:component_delete' project.id item.id %}">Eliminar</a>
                                         </td>
-                                        <td class="text-right">
-                                            {{ item.date_updated }}
-                                        </td>
-                                        <td class="text-right">
-                                           
-                                        </td>
-
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -198,16 +128,16 @@
                                 <br>
                                 <thead>
                                 <tr>
-                                    ********** NO ACTIVITIES ADDED YET, PLEASE CREATE ONE **********
+                                    <h6>
+                                        TODAVÍA NO HAS AGREGADO COMPONENTES, POR FAVOR CREA UNO UTILIZANDO EL BOTÓN DE + 
+                                    </h6>
                                 </tr>
                                 </thead>
                             {% endif %}
                         </table>
                     </div>
                 </div>
+
             </div>
-
-
-        </div>
     </div>
 {% endblock %}

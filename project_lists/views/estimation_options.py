@@ -13,7 +13,7 @@ class EstimationOptionsView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
     form_class = EstimateForm
     template_name = "project_lists/estimate_window.html"
     success_url = reverse_lazy("project_lists:dashboard")
-    success_message = "Tipo de Estimación seleccionada"
+    # success_message = "Tipo de Estimación seleccionada"
 
     def get_success_url(self):
         project = self.kwargs.get('project')
@@ -34,10 +34,10 @@ class EstimationOptionsView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
         method = form.cleaned_data['type_estimate']
         project_id = self.kwargs.get('project')
         if method is '1':
-            url = "/mtv/" + str(project_id)
+            url = "/mtv/" + str(project_id) + "/view/"
             return redirect(url)
         elif method is '2':
-            url = "/mtv_m/" + str(project_id)
+            url = "/mtv_m/" + str(project_id) + "/view/"
             return redirect(url)
         elif method is '3':
             url = "/repcu/" + str(project_id)

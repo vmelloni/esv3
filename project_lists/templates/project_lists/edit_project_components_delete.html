@@ -13,14 +13,15 @@
                 <form class="form" id="delete-form" method="POST">
                     {% csrf_token %}
                     <div class="input-group form-group-no-border input-lg center">
-                        <p style="color:black">Está seguro de que de sea eliminar el componente "{{ component_name }}" ? </p>
+                        <p style="color:black">Está seguro de que desea eliminar el componente "{{ component_name }}"? </p>
+                        <p style="color:black">Todos los datos asociados al mismo serán eliminados y no podrán ser recuperados.</p>
                     </div>
                     <span>
                         <button type="submit"
                                 class="btn btn-primary btn-round">
                             Si, eliminar todo
                         </button>
-                        <button type="button" class="btn btn-secondary btn-round"onClick="javascript:history.go(-1);">Cerrar</button>
+                        <button type="button" class="btn btn-secondary" onClick="javascript:history.go(-1);">No, volver</button>
                     </span>
                 </form>
             </div>

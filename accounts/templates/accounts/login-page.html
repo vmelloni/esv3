@@ -46,7 +46,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
+                        <h5     class="modal-title" id="exampleModalLabel">Reset Password</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -81,7 +81,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-5 ml-auto mr-auto">
+                <div class="col-md-5 ml-auto mr-auto" style="margin-top:150px">
                     <div class="card card-login card-plain">
                         <div class="card-body">
                             {% if form.errors %}
@@ -110,20 +110,18 @@
                                 </div>
                                 <div class="card-footer text-center">
                                     <button type="submit"
-                                            class="btn btn-primary btn-round btn-lg btn-block">Get
-                                        Started
+                                            class="btn btn-primary btn-round btn-lg btn-block">Ingresar
                                     </button>
                                 </div>
                             </form>
                         </div>
                         <div class="pull-left">
-                            <h6><a href="{% url 'accounts:signup' %}" class="link footer-link">Create
-                                Account</a></h6>
+                            <h6><a href="{% url 'accounts:signup' %}" class="link footer-link">
+                                Crear Cuenta</a></h6>
                         </div>
                         <div class="pull-right">
                             <h6><a href="#" data-toggle="modal"
-                                   data-target="#ResetPassModal" class="link footer-link">Forgot
-                                Password?</a></h6>
+                                   data-target="#ResetPassModal" class="link footer-link">Olvidaste tu contraseña?</a></h6>
                         </div>
                     </div>
                 </div>
@@ -132,19 +130,22 @@
     </div>
 </div>
 
-<!-- <footer class="footer ">
+<footer class="footer " style="background-color: black;">
 
 
     <div class="container">
-        <div class="copyright">
-            © 2018, Designed by <a href="http://www.invisionapp.com"
-                                   target="_blank">Invision</a>.
-            Coded by <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+        <div class="copyright" style="color: white; float: left;">
+            © 2019, Developed by <a href="" target="_blank">Vittoria Melloni</a>
+            & <a href="" target="_blank"> Jessica Llorente</a>
         </div>
+        <div class="copyright" style="color: white; float: right;">
+                 Mentored by <a href=""
+                                       target="_blank">Pablo Ortiz Bochard</a>
+            </div>
     </div>
 
 
-</footer> -->
+</footer>
 
 <!-- </div> -->
 

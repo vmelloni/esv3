@@ -5,35 +5,47 @@
 {% block content %}
        <div class="modal-dialog" role="">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 style="color:black">Nuevo Proyecto</h5>
-                    <button type="button" class="close" onClick="javascript:history.go(-1);">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                    <div class="modal-header d-block">
+                        <div class="d-flex">
+                            <h5 style="color:black">Agregar Nuevo Proyecto</h5>
+                            <button type="button" class="close" onClick="javascript:history.go(-1);">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                      
+                    </div>
+          
                 <div class="modal-body">
                     <div class="card-body">
                         <form class="form" method="POST"
-                              action="{% url 'project_lists:dashboard' %}">
-                            {% csrf_token %}
+                                action="">
+                                {% csrf_token %}
                             <span>
-                        <div class="input-group form-group-no-border input-lg">
-                            {{ form.name }}
-                        </div>
-                        <input class="input-group form-group-no-border input-lg" style="display:none" name="owner" value={{owner.id}} />
-                        <button type="submit"
-                                    class="btn btn-primary btn-round btn-lg btn-block">
-                               Agregar
-                            </button>
-                    </span>
+                                <div class="input-group form-group-no-border input-lg">
+                                    {{ form.name }}
+                                </div>
+                                <div class="input-group input-lg " style="display: block;">
+                                       <select name = "time">
+                                         <option value = "1" selected>Días</option>
+                                        <option value = "2" >Horas</option>
+                                        <option value = "3">Minutos</option>
+                                    </select>
+                                 </div>
+                                <input class="input-group form-group-no-border input-lg" style="display:none" name="owner" value={{owner.id}} />
+                                <button type="submit"
+                                            class="btn btn-primary btn-round btn-lg btn-block">
+                                    Agregar
+                                </button>
+                            </span>
                         </form>
                     </div>
                 </div>
+                <h6 style="color:black; font-size: x-small;" >Recuerda que el nombre del proyecto debe ser único</h6>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"onClick="javascript:history.go(-1);">Cerrar</button>
-                 </div>
+                    <button type="button" class="btn btn-secondary"onClick="javascript:history.go(-1);">Volver</button>
+                </div>
+                
             </div>
         </div>
-
 
 {% endblock %}

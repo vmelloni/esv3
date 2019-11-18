@@ -1,0 +1,106 @@
+{% extends 'project_lists/base.html' %}
+{% block title %}
+    MTV
+{% endblock %}
+{% block content %}
+
+
+    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="EstimationModal"
+         tabindex="-1" role="dialog" style="color: black">
+    </div>
+    <div class="row" style="margin-top:-20px">
+        <div class="col-md-8 ml-auto mr-auto">
+                <a href="{% url 'project_lists:dashboard' %}"
+                class="btn btn-neutral pull-left">❮ Volver al inicio</a>
+                <div class="text-right" >
+                    <a href="{% url 'project_lists:mtv_estimate'  project.id %}"
+                   class="btn btn-neutral float-left"  style="color:white; background:#3498DB ;font-size: 12px">
+                  <strong> Estimar</strong>  </a>
+                  <a href="{% url 'project_lists:mtv_details_edit' project.id  %}"
+                  class="btn btn-neutral float-left" style="color:white; background:#3498DB ;font-size: 12px">
+                  <span class="glyphicon glyphicon-edit"></span><strong> Editar </strong></a>
+                   <a href="{% url 'project_lists:pdf_MTV' '1' project.id %}"
+                  class="btn btn-neutral float-right" style="color:white; background:#3498DB ;font-size: 12px">
+                 <span class="glyphicon glyphicon-download-alt"></span> <strong>Descargar</strong></a>
+                   <a href="{% url 'project_lists:edit_project_components' project.id %}"
+                  class="btn btn-neutral" style="color:white; background:#3498DB ;font-size: 12px">
+                  <i class="padding-five material-icons" style="font-style: normal;"><strong>Editar Componentes</strong></i>
+                    </a>
+                </div>
+            <div class="card card-plain" style="color:black">
+                <div class="card-body bg-white" style="opacity: .65">
+                    <div class="pull-left">
+                            <h5 class="modal-title" style="color:grey;font-size: medium;" align="left">Proyecto: {{ project_name }} </h5>
+                            <h1 class="modal-title" style="color:grey;font-size: small;" align="left">Unidad de tiempo: {{project_time}} </h1>  
+                    </div>
+                    {% if components %}
+                    <div class="row" >
+                            <div class="col-3">
+                                <label>Componente</label>
+                             </div>
+                              <div class="col-3">
+                                 <label>Optimista</label>
+                              </div>
+                              <div class="col-3">
+                                <label>Promedio</label>
+                              </div>
+                              <div class="col-3">
+                                  <label>Pesimista</label>
+                              </div>
+                              <div class="col-1">
+                              </div>
+                    </div>
+                    <hr  style="margin:10px; margin-top:0px;" >
+                    <div class="card-body">
+                    
+                        {% for component in components %}
+                        <div class="row form-row spacer">
+                                <div class="col-3">
+                                    <label>{{component.name}}</label>
+                                </div>
+                                <div class="col-3">
+                                    <label>{{component.optimist}}</label>
+                                </div>
+                                <div class="col-3">
+                                    <label>{{component.average}}</label>
+                                </div>
+                                <div class="col-3">
+                                    <label>{{component.pessimist}}</label>
+                                </div>
+                                </div>
+
+                        {% endfor %}
+                        {% else %}
+                        <br>
+                        <br>
+                        <thead>
+                        <tr>
+                            <h6>
+                                TODAVÍA NO HAS AGREGADO COMPONENTES, POR FAVOR CREA UNO UTILIZANDO EL BOTÓN DE + 
+                            </h6>
+                        </tr>
+                        </thead>
+                    {% endif %}
+                        <div class="pull-left">
+                            
+                                <div class="text-right" >
+                                   
+                                </div>
+
+                          </div>
+                   </div>
+                   
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+

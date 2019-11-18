@@ -18,7 +18,7 @@ class MTVEstimate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Component
     template_name = "project_lists/mtv_estimation.html"
     success_url = reverse_lazy("project_lists:mtv_details")
-    success_message = "Estimation was successful."
+    success_message = "Estimación exitosa."
 
     def get_success_url(self):
         return reverse('project_lists:mtv_details', kwargs={'pk': self.kwargs.get("pk")})
@@ -34,5 +34,14 @@ class MTVEstimate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
             mid = mid + (o_value + 4 * a_value + p_value) / 6
         mid = round(mid, 2)
         context['message'] = mid
+        context['project_id'] = project_id
+        context['project_name'] = ProjectList.objects.get(id=project_id).name
+        time = ProjectList.objects.get(id=project_id).time
+        if time is 1:
+            context['project_time'] = "Días"
+        if time is 2:
+            context['project_time'] = "Horas"
+        if time is 3:
+            context['project_time'] = "Minutos"
         ProjectList.objects.filter(id=project_id).update(estimate_mtv=mid)
         return super(MTVEstimate, self).render_to_response(context, **response_kwargs)

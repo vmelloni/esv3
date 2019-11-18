@@ -3,7 +3,6 @@
     Inicio
 {% endblock %}
 {% block content %}
-    
 
     <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="FormModal"
          tabindex="-1" role="dialog" style="color: black">
@@ -13,55 +12,29 @@
         <div class="col-md-8 ml-auto mr-auto">
             <div class="card card-plain" style="color:black">
                 <div class="card-body bg-white" style="opacity:.65">
-                    {% if form.errors %}
-                        <div class="alert alert-danger" role="alert">
-                            <div class="container">
-                                <div class="alert-icon">
-                                    <i class="now-ui-icons objects_support-17"></i>
-                                </div>
-                                {% for error in form.errors %}
-                                    {{ form.errors.as_text | escape }}
-                                {% endfor %}
-                                <button type="button" class="close" data-dismiss="alert"
-                                        aria-label="Close">
-                  <span aria-hidden="true">
-                     <i class="now-ui-icons ui-1_simple-remove"></i>
-                  </span>
-                                </button>
-                            </div>
+                    
+
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }} " >
+                            <button type="button" class="close" >
+                          
+                             </button>
+                             {{ message }}
                         </div>
-                    {% endif %}
-                    {% if messages %}
-                        <div class="alert alert-success" role="alert">
-                            <div class="container">
-                                <div class="alert-icon">
-                                    <i class="now-ui-icons ui-2_like"></i>
-                                </div>
-                                <strong>Agregado!</strong>
-                                {% for message in messages %}
-                                    {{ message }}
-                                {% endfor %}
-                                <button type="button" class="close" data-dismiss="alert"
-                                        aria-label="Close">
-                  <span aria-hidden="true">
-                     <i class="now-ui-icons ui-1_simple-remove"></i>
-                  </span>
-                                </button>
-                            </div>
-                        </div>
-                    {% endif %}
+                      {% endfor %}
+
                     <div class="pull-left">
-                        <a href="{% url 'project_lists:dashboard_add' owner.id %}"
-                            class="padding-five btn btn-primary btn-round float-right">
-                            <i class="material-icons padding-five">add</i>
-                        </a>
+                            <a href="{% url 'project_lists:dashboard_add' owner.id %}"
+                                class="padding-five btn btn-primary btn-round float-right">
+                                <i class="material-icons padding-five"> + </i>
+                            </a>
                     </div>
+                    
                     <div class="table-responsive ">
                        <table class="table table-hover table-fixed">
                             {% if project_lists %}
                                 <thead class="">
                                 <tr>
-                                    
                                     <th>
                                         Proyectos
                                     </th>
@@ -74,56 +47,51 @@
                                     <th class="text-right">
                                          Acciones
                                     </th>
-
                                 </tr>
                                 </thead>
+
                                 <tbody>
+                                    {% for list in project_lists %}
+                                        <tr>
+                                            <td>
+                                                {{ list.name }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ list.date_created }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ list.date_updated }}
+                                            </td>
+                                            <td class="text-right">
+                                                <a align="left" class="nav-link" href="{% url 'project_lists:update_list' list.id %}">Modificar</a>
+                                                <a align="left" class="nav-link" href="{% url 'project_lists:edit_project_components' list.id %}">Componentes</a>
+                                                <a align="left"  class="nav-link" href="{% url 'project_lists:dashboard_delete' list.id %}">Eliminar</a>
+                                                <a align="left" class="nav-link" href="{% url 'project_lists:pdf_MTV' '4' list.id %}">Descargar</a>
 
-                                {% for list in project_lists %}
-                                    <tr>
+                                            </td>
+                                            <td class="text-right">
+                                                <a  align="left" class="nav-link" href="{% url 'project_lists:duplicate' list.id %}">Duplicar</a>
+                                                <a  align="left" class="nav-link" href="{% url 'project_lists:estimate' list.id %}">Estimar</a>
+                                                <a  align="left" class="nav-link" href="{% url 'project_lists:average_estimate' list.id 0 %}">Consultar Estimaciones</a>
+                                                <a  align="left" class="nav-link" href="{% url 'project_lists:average_estimate' list.id 1 %}">Estimación Avanzada</a>
+
+                                            </td>
                                         
-                                        <td>
-                                            {{ list.name }}
-                                        </td>
-                                        <td class="text-center">
-                                            {{ list.date_created }}
-                                        </td>
-                                        <td class="text-center">
-                                            {{ list.date_updated }}
-                                        </td>
-                                        <td class="text-right">
-                                             <a align="left" class="nav-link" href="{% url 'project_lists:update_list' list.id %}">Cambiar Nombre</a>
-                                             <a align="left" class="nav-link" href="{% url 'project_lists:edit_project_components' list.id %}">Componentes</a>
-                                             <a align="left"  class="nav-link" href="{% url 'project_lists:dashboard_delete' list.id %}">Eliminar</a>
-                                             <a align="left" class="nav-link" href="{% url 'project_lists:edit_project_components' list.id %}">Descargar</a>
-
-                                        </td>
-                                        <td class="text-right">
-                                             <a  align="left" class="nav-link" href="{% url 'project_lists:edit_project_components' list.id %}">Duplicar</a>
-                                             <a  align="left" class="nav-link" href="{% url 'project_lists:estimate' list.id %}">Estimar</a>
-                                             <a  align="left" class="nav-link" href="{% url 'project_lists:edit_project_components' list.id %}">Estimación Avanzada</a>
-                                             <a</a>                                             <a</a>
-
-                                        </td>
-                                       
-                                    </tr>
-                                {% endfor %}
+                                        </tr>
+                                    {% endfor %}
                                 </tbody>
                             {% else %}
-                                <br>
-                                <br>
+                                
                                 <thead>
-                                <tr>
-                                    ********** NO PROJECTS ADDED YET, PLEASE CREATE ONE **********
-                                </tr>
+                                    <h6>
+                                        TODAVÍA NO HAS AGREGADO PROYECTOS, POR FAVOR CREA UNO UTILIZANDO EL BOTÓN DE + 
+                                    </h6>
                                 </thead>
                             {% endif %}
                         </table>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 {% endblock %}

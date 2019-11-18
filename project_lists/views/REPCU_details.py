@@ -15,24 +15,36 @@ from project_lists.forms import ComponentForm
 
 
 class RePCUDetailsView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    model = Component
     form_class = ComponentForm
     template_name = "project_lists/repcu_details.html"
-    success_message = "Component has been created."
+    success_url = reverse_lazy('project_lists:repcu_details')
+    success_message = ""
 
     def get_success_url(self):
-        return reverse('project_lists:repcu_details', kwargs={'pk': self.kwargs.get("pk")})
+        project_id = self.kwargs.get("pk")
+        return reverse('project_lists:repcu_details', kwargs={'pk': project_id })
 
-    def form_valid(self, form):
-        item_name = form.cleaned_data['name']
-        list = ProjectList.objects.filter(id=self.kwargs.get('pk')).first()
-        if Component.objects.filter(name=item_name, list=list).exists():
-            form._errors[' An Component with that name already exists'] = ''
-            return super(MTVDetailsView, self).form_invalid(form)
-        form.instance.list = list
-        return super(RePCUDetailsView, self).form_valid(form)
-
+    def get_context_data(self, **kwargs):
+        context = super(RePCUDetailsView, self).get_context_data(**kwargs)
+        project_id = self.kwargs.get('pk')
+        context['project'] = ProjectList.objects.get(id=project_id)
+        context['project_name'] = ProjectList.objects.get(id=self.kwargs.get('pk')).name
+        components = Component.objects.filter(list_id=project_id)
+        context['components'] = components
+        time = ProjectList.objects.get(id=project_id).time
+        if time is 1:
+            context['project_time'] = "Días"
+        if time is 2:
+            context['project_time'] = "Horas"
+        if time is 3:
+            context['project_time'] = "Minutos"
+        return context
+    
     def render_to_response(self, context, **response_kwargs):
-        context['Component'] = Component.objects.filter(list=self.kwargs.get('pk'))
-        context['object'] = ProjectList.objects.filter(id=self.kwargs.get('pk')).first()
+        project_id = self.kwargs.get('pk')
+        context['project'] = ProjectList.objects.get(id=project_id)
+        components = Component.objects.filter(list_id=project_id)
+        context['components'] = components
         return super(RePCUDetailsView, self).render_to_response(context, **response_kwargs)
 

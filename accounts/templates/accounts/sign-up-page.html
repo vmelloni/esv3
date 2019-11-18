@@ -51,20 +51,20 @@
                 </div>
                 <div class="col-md-4 mr-auto">
 
-                    <div class="card card-signup">
+                    <div class="card card-signup" style="margin-top:150px">
                         <div class="card-body">
-                            <h4 class="card-title text-center">Register</h4>
+                            <h4 class="card-title text-center">Registrarme</h4>
                             <div class="social text-center">
-                                <button class="btn btn-icon btn-round btn-twitter">
+                                <!-- <button class="btn btn-icon btn-round btn-twitter">
                                     <i class="fa fa-twitter"></i>
-                                </button>
-                                <button class="btn btn-icon btn-round btn-dribbble">
+                                </button> -->
+                                <!-- <button class="btn btn-icon btn-round btn-dribbble">
                                     <i class="fa fa-dribbble"></i>
-                                </button>
-                                <button class="btn btn-icon btn-round btn-facebook">
+                                </button> -->
+                                <!-- <button class="btn btn-icon btn-round btn-facebook">
                                     <i class="fa fa-facebook"> </i>
-                                </button>
-                                <h5 class="card-description"> or be classical </h5>
+                                </button> -->
+                                <!-- <h5 class="card-description"> or be classical </h5> -->
                             </div>
                             {% if form.errors %}
                                 <div class="alert alert-danger" role="alert">
@@ -101,10 +101,10 @@
                                 </div>
                                 <input type="hidden" name="next" value="{% url 'accounts:login' %}">
                                 <div class="card-footer text-center">
-                                    <button type="submit" class="btn btn-primary btn-round btn-lg">Get Started</button>
+                                    <button type="submit" class="btn btn-primary btn-round btn-lg">Crear Cuenta</button>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <a href='{% url "accounts:login" %}'>Already have an account?</a>
+                                    <a href='{% url "accounts:login" %}'>Ya tienes una cuenta?</a>
                                 </div>
                             </form>
                         </div>
@@ -117,24 +117,21 @@
     </div>
 
 
-    <footer class="footer">
+    <footer class="footer " style="background-color: black;">
+
+
             <div class="container">
-                <nav>
-                    <ul>
-                        <!-- <li>
-                            <a href="/">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/parseendavid/django-shopping-list/blob/master/LICENSE">
-                                GNU General Public License v3.0
-                            </a>
-                        </li> -->
-                    </ul>
-                </nav>
+                <div class="copyright" style="color: white; float: left;">
+                    © 2019, Developed by <a href="" target="_blank">Vittoria Melloni</a>
+                    & <a href="" target="_blank"> Jessica Llorente</a>
+                </div>
+                <div class="copyright" style="color: white; float: right;">
+                         Mentored by <a href="" target="_blank">Pablo Ortiz Bochard</a>
+                    </div>
             </div>
-    </footer>
+        
+        
+        </footer>
 
 </div>
 

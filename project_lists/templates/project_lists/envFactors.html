@@ -1,0 +1,180 @@
+{% extends 'project_lists/base.html' %}
+{% block title %}
+    Factores Ambientales
+{% endblock %}
+{% block content %}
+
+
+        <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="EstimationModal"
+         tabindex="-1" role="dialog" style="color: black">
+    </div>
+    <div class="row" style="margin-top:-20px">
+        <div class="col-md-8 ml-auto mr-auto">
+                <a href="{% url 'project_lists:dashboard' %}"
+                class="btn btn-neutral pull-left">❮ Volver al inicio</a>
+            <div class="card-plain table-results" style="color:black">
+                <div class="card-body bg-white" style="opacity: .65">
+                    {% if form.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            <div class="container">
+                                <div class="alert-icon">
+                                    <i class="now-ui-icons objects_support-17"></i>
+                                </div>
+                                <strong>Oh snap!</strong>
+                                {% for error in form.errors %}
+                                    {{ form.errors.as_text | escape }}
+                                {% endfor %}
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-label="Close">
+						<span aria-hidden="true">
+							<i class="now-ui-icons ui-1_simple-remove"></i>
+						</span>
+                                </button>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if messages %}
+                        <div class="alert alert-success" role="alert">
+                            <div class="container">
+                                <div class="alert-icon">
+                                    <i class="now-ui-icons ui-2_like"></i>
+                                </div>
+                                <strong>Factores actualizados correctamente.</strong>
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-label="Close">
+  						<span aria-hidden="true">
+							<i class="now-ui-icons ui-1_simple-remove"></i>
+						</span>
+                                </button>
+                            </div>
+                        </div>
+                    {% endif %}
+
+
+                    <div class="row" >
+
+                            <div class="col-6">
+                                <label style="font-weight:bold"> Factor Ambiental</label>
+                             </div>
+                              <div class="col-1">
+                                 <label style="font-weight:bold"> Ranking</label>
+                              </div>
+
+                    </div>
+                    <hr  style="margin:10px; margin-top:0px;" >
+                    <div class="card-body">
+                    <form method="POST" action='editEF/'>
+                    {% csrf_token %}
+
+                     <div class="row form-row spacer">
+                             <div class="col-6">
+                                     <label>Familiaridad con el proyecto</label>
+                             </div>
+                                 <div class="col-3">
+                                  <div class="input-group form-group-no-border input-lg">
+                                  <input type="number" name="familiarityWithTheProject" step=".01" min="0.00" max="5.00" value={{envFactors.familiarityWithTheProject}}  required style="">
+                                </div>
+                              </div>
+                     </div>
+                     <div class="row form-row spacer">
+                         <div class="col-6">
+                                 <label>Experiencia con la aplicación</label>
+                         </div>
+                         <div class="col-3">
+                             <div class="input-group form-group-no-border input-lg">
+                              <input type="number" name="applicationExperience" step=".01" min="0.00" max="5.00" value={{envFactors.applicationExperience}}  required style="">
+                             </div>
+                          </div>
+                     </div>
+                     <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Experiencia POO</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="objectOrientedProgrammingExperience" step=".01" min="0.00" max="5.00" value={{envFactors.objectOrientedProgrammingExperience}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+                      <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Capacidad de análisis del líder</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="leadAnalystCapability" step=".01" min="0.00" max="5.00" value={{envFactors.leadAnalystCapability}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+                                  <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Motivación</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="motivation" step=".01" min="0.00" max="5.00" value={{envFactors.motivation}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+                      <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Requisitos estables</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="stableRequirements" step=".01" min="0.00" max="5.00" value={{envFactors.stableRequirements}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+                    <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Personal part-time</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="partTimeStaff" step=".01" min="0.00" max="5.00" value={{envFactors.partTimeStaff}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+                      <div class="row form-row spacer">
+                      <div class="col-6">
+                           <label>Dificulad del lenguaje de programación</label>
+                       </div>
+                       <div class="col-3">
+                           <div class="input-group form-group-no-border input-lg">
+                             <input type="number" name="difficultProgrammingLanguage" step=".01" min="0.00" max="5.00" value={{envFactors.difficultProgrammingLanguage}}  required style="">
+                           </div>
+                       </div>
+                     </div>
+
+                         <div class="input-group form-group-no-border input-lg">
+                                  <input  type ="hidden"  name="project_id"  value={{project_id}} />
+                         </div>
+                      <div class="pull-left">
+                        <button type="submit" class="btn btn-neutral"style="color:white; background:#3498DB ;font-size: 12px" >
+                          <span class="glyphicon glyphicon-floppy-disk"> </span> <strong>Actualizar</strong>
+                        </button>
+                        <a href="{% url 'project_lists:repcu_details' project_id %}"
+                                class="btn btn-neutral float-left" style="color:#2471A3; font-size: 14px">
+                                 <span class="glyphicon glyphicon-arrow-left">  </span>&nbsp; Volver</a>
+                            </a>
+                     </div>
+                    
+                     </form>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+

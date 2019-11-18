@@ -1,0 +1,142 @@
+{% extends 'project_lists/base.html' %}
+{% block title %}
+    MTV
+{% endblock %}
+{% block content %}
+    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="EstimationModal"
+         tabindex="-1" role="dialog" style="color: black">
+    </div>
+    <div class="row" style="margin-top:-20px">
+        <div class="col-md-8 ml-auto mr-auto">
+                <a href="{% url 'project_lists:dashboard' %}"
+                class="btn btn-neutral pull-left">❮ Volver al inicio</a>
+                <div>
+                    <button type="button" style="color:white; background:#3498DB ;font-size: 12px" class="btn btn-neutral float-left"onClick="javascript:history.go(-1);"><strong>Volver</strong></button>
+                    <a href="{% url 'project_lists:pdf_MTV' '1' project.id %}"
+                   class="btn btn-neutral float-right" style="color:white; background:#3498DB ;font-size: 12px">
+                <span class="glyphicon glyphicon-download-alt"></span> <strong>Descargar</strong></a>
+                
+                </div>  
+            <div class="card card-plain" style="color:black">
+                <div class="card-body bg-white" style="opacity: .65">
+                    {% if form.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            <div class="container">
+                                <div class="alert-icon">
+                                    <i class="now-ui-icons objects_support-17"></i>
+                                </div>
+                                <strong>Ha ocurrido un error.</strong>
+                                {% for error in form.errors %}
+                                    {{ form.errors.as_text | escape }}
+                                {% endfor %}
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-label="Close">
+						<span aria-hidden="true">
+							<i class="now-ui-icons ui-1_simple-remove"></i>
+						</span>
+                                </button>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if messages %}
+                        <div class="alert alert-success" role="alert">
+                            <div class="container">
+                                <div class="alert-icon">
+                                    <i class="now-ui-icons ui-2_like"></i>
+                                </div>
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-label="Close">
+  						<span aria-hidden="true">
+							<i class="now-ui-icons ui-1_simple-remove"></i>
+						</span>
+                                </button>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="pull-left">
+                            <h5 class="modal-title" style="color:grey;font-size: medium;" align="left">Proyecto: {{ project_name }} </h5>
+                        <h1 class="modal-title" style="color:grey;font-size: small;" align="left">Unidad de tiempo: {{ project_time}} </h1>
+                               
+                    </div>
+                    
+                    <div class="row" >
+
+                            <div class="col-3">
+                                <label>Componente</label>
+                             </div>
+                              <div class="col-3">
+                                 <label>Optimista</label>
+                              </div>
+                              <div class="col-3">
+                                <label>Promedio</label>
+                              </div>
+                              <div class="col-3">
+                                  <label>Pesimista</label>
+                              </div>
+
+                              <div class="col-1">
+
+                              </div>
+
+                    </div>
+                    <hr  style="margin:10px; margin-top:0px;" >
+                    <div class="card-body">
+                    <form action= 'mtv/editMTV/' method="POST" >
+                    {% csrf_token %}
+                     {% for component in components %}
+                     <div class="row form-row spacer">
+                             <div class="col-3">
+                                     <label>{{component.name}}</label>
+                             </div>
+                              <div class="col-3">
+                                  <div class="input-group form-group-no-border input-lg">
+                                  <input style="align-self: center;"  type="number"  step=".01" placeholder="OPTIMISTA" name="optimist" value={{component.optimist}}  required>
+                                </div>
+                              </div>
+                               <div class="col-3">
+                                  <div class="input-group form-group-no-border input-lg">
+                                  <input  type="number"  step=".01" placeholder="PROMEDIO" name="average" value={{component.average}} required>
+                                </div>
+                              </div>
+                               <div class="col-3">
+                                  <div class="input-group form-group-no-border input-lg">
+                                  <input  type="number"  step=".01" placeholder="PESIMISTA" name="pessimist" value={{component.pessimist}} required>
+                                </div>
+                              </div>
+                              <div class="col-1">
+                                 <div class="input-group form-group-no-border input-lg">
+                                  <input  type ="hidden" input-group form-group-no-border input-lg" name="id"  value={{component.id}} />
+                                </div>
+
+                             </div>
+                          </div>
+                        {% endfor %}
+                         <div class="pull-left">
+                            <div>
+                                <h6 style="color:black; font-size: x-small;" >Recuerda que debes usar la misma unidad de medida para todos los valores.</h6>
+                                <h6 style="color:black; font-size: x-small;" >Pueden ser días, horas, meses o años. Todos los valores se considerán como si fueran una misma unidad.</h6>
+                                <button type="submit" class="btn btn-neutral" style="color:white; background:#3498DB ;font-size: 12px" >
+                                        <span class="glyphicon glyphicon-floppy-disk"></span><strong> Actualizar y Estimar </strong>
+                                </button>
+                            </div>
+
+                        </div>  
+                    </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+

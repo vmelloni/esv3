@@ -1,0 +1,33 @@
+{% extends 'project_lists/base.html' %}
+{% block title %}
+    Eliminar Caso de Uso
+{% endblock %}
+{% block content %}
+<div class="modal-dialog" role="">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="color:black" >Eliminar Caso de Uso </h5>
+        </div>
+        <div class="modal-body">
+            <div class="card-body">
+                <form action = 'delete/' method="POST">
+                    {% csrf_token %}
+                    <div class="input-group form-group-no-border input-lg center">
+                        <p style="color:black">Está seguro de que de sea eliminar el caso de uso "{{ use_case_name }}"? </p>
+                    </div>
+                   <input class="input-group form-group-no-border input-lg" style="display:none" name="component_id" value={{component_id}} />
+                   <input class="input-group form-group-no-border input-lg" style="display:none" name="use_case_id" value={{use_case_id}} />
+                    <span>
+                        <button type="submit"
+                                class="btn btn-primary btn-round">
+                            Si, eliminar
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-round"onClick="javascript:history.go(-1);">No, volver</button>
+                    </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

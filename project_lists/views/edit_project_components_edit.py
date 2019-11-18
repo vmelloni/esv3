@@ -25,9 +25,17 @@ class ComponentUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
   
     def get_context_data(self, **kwargs):
         context = super(ComponentUpdate, self).get_context_data(**kwargs)
+        context['component_name'] = Component.objects.get(id=self.kwargs.get('pk')).name
         context['component_id'] = self.kwargs.get('pk')
         context['project_id'] = self.kwargs.get('project')
         context['project_name'] = ProjectList.objects.get(id=self.kwargs.get('project')).name
+        time = ProjectList.objects.get(id=self.kwargs.get('project')).time
+        if time is 1:
+            context['project_time'] = "Días"
+        if time is 2:
+            context['project_time'] = "Horas"
+        if time is 3:
+            context['project_time'] = "Minutos"
         return context
 
     def form_valid(self, form):

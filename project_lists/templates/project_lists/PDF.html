@@ -1,0 +1,201 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Detalle de estimación</title>
+    <style type="text/css">
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+        .table {
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 5px;
+            background-color: #fff;
+        }
+        .table th,
+        .table td {
+            padding: 5px;
+            vertical-align: top;
+            border-top: 1px solid #000;
+            text-align: center;
+        }
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #000;
+        }
+        .table tbody + tbody {
+            border-top: 2px solid #000;
+        }
+        .table .table {
+            background-color: #fff;
+        }
+        .list-group {
+            display: block;
+            width: 100%;
+            list-style: none;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .list-group p {
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+            list-style: none;
+            font-size: 1.1em;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1> Proyecto: {{  project }} </h1>
+        </div>
+
+            {% if metodo is 1 %}
+
+           <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Componente</th>
+                <th>Optimista</th>
+                <th>Promedio</th>
+                <th>Pesimista</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for component in components %}
+                <tr>
+
+                    <td> {{ component.name }} </td>
+                    <td>{{ component.optimist}}</td>
+                    <td>{{ component.average}}</td>
+                    <td>{{ component.pessimist }}</td>
+
+                </tr>
+                {% endfor %}
+
+               </tbody>
+             </table>
+            {% elif metodo is 2 %}
+
+            <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Componente</th>
+                    <th>Optimista</th>
+                    <th>Promedio</th>
+                    <th>Pesimista</th>
+                    <th>Riesgo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for component in components %}
+                <tr>
+
+                    <td> {{ component.name }} </td>
+                    <td>{{ component.optimist}}</td>
+                    <td>{{ component.average}}</td>
+                    <td>{{ component.pessimist }}</td>
+                    <td>{{ component.riskValue }}</td>
+
+                </tr>
+                {% endfor %}
+              </tbody>
+             </table>
+            {% elif metodo is 3 %}
+                <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Componente</th>
+                <th>Peso Caso de Uso</th>
+                <th>Peso Actores</th>
+
+            </tr>
+            </thead>
+            <tbody>
+                {% for component in components %}
+                <tr>
+
+                    <td> {{ component.name }} </td>
+                    <td>{{ component.weightCU}}</td>
+                    <td>{{ component.actorsAmount}}</td>
+
+
+                </tr>
+                {% endfor %}
+                 </tbody>
+             </table>
+            {% elif metodo is 4 %}
+                <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Componente</th>
+                <th>Optimista</th>
+                <th>Promedio</th>
+                <th>Pesimista</th>
+                <th>Riesgo</th>
+                <th>Peso Caso de Uso</th>
+                <th>Peso Actores</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for component in components %}
+                <tr>
+
+                    <td> {{ component.name }} </td>
+                    <td>{{ component.optimist}}</td>
+                    <td>{{ component.average}}</td>
+                    <td>{{ component.pessimist }}</td>
+                    <td>{{ component.riskValue }}</td>
+                    <td>{{ component.weightCU}}</td>
+                    <td>{{ component.actorsAmount}}</td>
+                </tr>
+                {% endfor %}
+
+               </tbody>
+             </table>
+            {% endif %}
+
+
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<footer class="w3-container w3-teal"  style=" text-align: center;" >
+  {% if metodo is 1 %}
+  <h1>Estimación según Método de los Tres Valores : {{ estimate_mtv }}</h1>
+  {% elif metodo is 2 %}
+    <h1>Estimación según Método de los Tres Valores Mejorados : {{ estimate_mtvm }}</h1>
+  {% elif metodo is 3 %}
+     <h3>Factor Complejidad Técnica : {{ tot_techFact }}</h3>
+     <h3>Factor Complejidad Ambiental : {{  tot_envFactors }}</h3>
+     <h3>Puntos de los Casos de Uso no ajustados: : {{  tot_PCU }}</h3>
+     <h1>Estimación según Puntos de Caso de Uso Revisado : {{ estimate_pcu }}</h1>
+  {% elif metodo is 4 %}
+     <br>
+    <div align="left">
+        <h3>Factor Complejidad Técnica : {{ tot_techFact }}</h3>
+        <h3>Factor Complejidad Ambiental : {{  tot_envFactors }}</h3>
+        <h3>Puntos de los Casos de Uso no ajustados: : {{  tot_PCU }}</h3>
+    </div>
+     <br>
+     <br>
+    <h1>Estimación según Método de los Tres Valores : {{ estimate_mtv }}</h1>
+    <h1>Estimación según Método de los Tres Valores Mejorados : {{ estimate_mtvm }}</h1>
+    <h1>Estimación según Puntos de Caso de Uso Revisado : {{ estimate_pcu }}</h1>
+
+  {% endif %}
+
+</footer>
+
+</body>
+</html>

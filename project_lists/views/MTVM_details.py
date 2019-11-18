@@ -15,14 +15,14 @@ from django.shortcuts import redirect
 # Create your views here.
 class MTVMDetailsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Component
-    template_name = "project_lists/mtvm_details.html"
-    success_url = reverse_lazy('project_lists:mtvm_details')
+    template_name = "project_lists/mtvm_details_view.html"
+    success_url = reverse_lazy('project_lists:mtvm_details_view')
     success_message = "bla."
     fields = '__all__'
 
     def get_success_url(self):
         project = self.kwargs.get('pk')
-        return reverse('project_lists:mtvm_details', kwargs={'pk': project})
+        return reverse('project_lists:mtvm_details_view', kwargs={'pk': project})
 
     def get_context_data(self, **kwargs):
         context = super(MTVMDetailsView, self).get_context_data(**kwargs)
@@ -30,15 +30,53 @@ class MTVMDetailsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         context['project'] = ProjectList.objects.filter(id=project_id).first()
         components = Component.objects.filter(list_id=self.kwargs.get('pk'))
         context['components'] = components
-        # context['components_id'] = components.id
-        # context['components_name'] = components.name
-        # print(components.name)
+        context['project_name'] = ProjectList.objects.get(id=project_id).name
+        time = ProjectList.objects.get(id=project_id).time
+        if time is 1:
+            context['project_time'] = "Días"
+        if time is 2:
+            context['project_time'] = "Horas"
+        if time is 3:
+            context['project_time'] = "Minutos"
         return context
 
     def render_to_response(self, context, **response_kwargs):
         context['component'] = Component.objects.filter(list=self.kwargs.get('pk'))
         context['object'] = ProjectList.objects.filter(id=self.kwargs.get('pk')).first()
         return super(MTVMDetailsView, self).render_to_response(context, **response_kwargs)
+
+
+class MTVMDetailsEditView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = Component
+    template_name = "project_lists/mtvm_details_edit.html"
+    success_url = reverse_lazy('project_lists:mtvm_details_edit')
+    # success_message = ""
+    fields = '__all__'
+
+    def get_success_url(self):
+        project = self.kwargs.get('pk')
+        return reverse('project_lists:mtvm_details_edit', kwargs={'pk': project})
+
+    def get_context_data(self, **kwargs):
+        context = super(MTVMDetailsEditView, self).get_context_data(**kwargs)
+        project_id = self.kwargs.get('pk')
+        context['project'] = ProjectList.objects.filter(id=project_id).first()
+        components = Component.objects.filter(list_id=self.kwargs.get('pk'))
+        context['components'] = components
+        context['project_name'] = ProjectList.objects.get(id=project_id).name
+        time = ProjectList.objects.get(id=project_id).time
+        if time is 1:
+            context['project_time'] = "Días"
+        if time is 2:
+            context['project_time'] = "Horas"
+        if time is 3:
+            context['project_time'] = "Minutos"
+        return context
+
+    def render_to_response(self, context, **response_kwargs):
+        context['component'] = Component.objects.filter(list=self.kwargs.get('pk'))
+        context['object'] = ProjectList.objects.filter(id=self.kwargs.get('pk')).first()
+        return super(MTVMDetailsEditView, self).render_to_response(context, **response_kwargs)
 
 
 def editMTVM(request, **kwargs):
@@ -59,8 +97,5 @@ def editMTVM(request, **kwargs):
         component.average = average_value
         component.riskValue = risk_value
         component.save()
-
-    url = "/mtv_m/" + str(project_id)
+    url = "/mtv_m/" + str(project_id) + "/estimate"
     return redirect(url)
-  
-  

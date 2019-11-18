@@ -3347,7 +3347,9 @@ body {
   background-color: transparent !important;
   box-shadow: none;
   color: #FFFFFF;
-  padding-top: 20px; }
+  padding-top: 20px;
+  margin-top: 4%;
+ }
 .navbar.bg-white:not(.navbar-transparent) a:not(.dropdown-item):not(.btn) {
   color: #888888; }
 .navbar.bg-white:not(.navbar-transparent) a:not(.dropdown-item):not(.btn).disabled {
@@ -3364,7 +3366,7 @@ body {
   background-color: #888888 !important; }
 
 .bg-primary {
-  background-color: #f96332 !important; }
+  background-color: #000 !important; }
 
 .bg-info {
   background-color: #2CA8FF !important; }
@@ -4857,6 +4859,18 @@ Created using IcoMoon - icomoon.io
   width: 100%;
   margin-bottom: 30px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2); }
+
+  .table-results {
+    width: 50%;
+    display: table;
+    margin-left: 25%;
+    border: 0;
+    border-radius: 0.1875rem;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+    text-align: right;
+}
 .card .author .avatar {
   width: 30px;
   height: 30px;
@@ -5290,7 +5304,7 @@ Created using IcoMoon - icomoon.io
   padding: 1.125rem 0;
   text-align: center; }
 .footer.footer-default {
-  background-color: #f2f2f2; }
+  background-color: #000; }
 .footer.footer-white {
   background-color: #FFFFFF; }
 .footer nav {
@@ -5797,7 +5811,6 @@ Created using IcoMoon - icomoon.io
   height: 100%;
   z-index: -1; }
 .page-header > .content {
-  margin-top: 11%;
   text-align: center;
   margin-bottom: 50px; }
 .signup-page .page-header {

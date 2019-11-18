@@ -1,0 +1,77 @@
+{% extends 'project_lists/base.html' %}
+{% block title %}
+    Estimar MTVM
+{% endblock %}
+{% block content %}
+<div class="modal-dialog" role="">
+       <div class="modal-content">
+           <div class="modal-header d-block">
+            <div class="d-flex">
+             <h3 class="modal-title" style="color:black">Estimaciones realizadas</h3>
+
+             <button type="button" class="close" onClick="javascript:history.go(-1);">
+                    <span aria-hidden="true">&times;</span>
+             </button>
+            </div>
+            <h5 class="modal-title" style="color:black" align="left">Proyecto: {{ project_name }} </h5>
+        </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <form class="form" method="POST"
+                              action="{% url 'project_lists:dashboard' %}">
+                            {% csrf_token %}
+                            <span>
+                          <div class="row form-row spacer">
+                             <div class="col-8">
+                                     <label style="color:black">Método de los tres valores</label>
+                             </div>
+                             <div class="col-1">
+                                  <div class="input-group form-group-no-border input-lg">
+                                       <label style="color:blue">{{project.estimate_mtv}}</label>
+                                  </div>
+                             </div>
+                          </div>
+                          <div class="row form-row spacer">
+                             <div class="col-8">
+                                     <label style="color:black">Método de los tres valores mejorado</label>
+                             </div>
+                             <div class="col-1">
+                                  <div class="input-group form-group-no-border input-lg">
+                                    <label style="color:blue">{{project.estimate_mtvm}}</label>
+                                  </div>
+                             </div>
+                          </div>
+                         <div class="row form-row spacer">
+                             <div class="col-8">
+                                     <label style="color:black">Puntos de caso de uso revisado</label>
+                             </div>
+                             <div class="col-1">
+                                  <div class="input-group form-group-no-border input-lg">
+                                       <label style="color:blue">{{project.estimate_pcu}}</label>
+                                  </div>
+                             </div>
+                          </div>
+                          {% if modo is 1 %}
+                          <hr>
+                             <div class="row form-row spacer">
+                                  <div class="col-8">
+                                      <label style="color:black">La estimación ponderada es: </label>
+                                      <label style="color:blue">{{ average }}</label>
+                                  </div>
+                            </div>
+                          {% endif %}
+
+                    </span>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-neutral"onClick="javascript:history.go(-1);" style="color:white; background:#3498DB ;font-size: 14px">Aceptar</button>
+                     <button type="button" class="btn btn-neutral"onClick="javascript:history.go(-1);"
+                             style="color:white; background:#3498DB ;font-size: 14px">
+                         <span class="glyphicon glyphicon-download-alt"></span> Descargar</button>
+                 </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

@@ -1,3 +1,4 @@
+xhtml2pdf
 dj-database-url==0.5.0
 Django==2.2.3
 gunicorn==19.7.1

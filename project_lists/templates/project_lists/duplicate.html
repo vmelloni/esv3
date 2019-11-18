@@ -1,0 +1,51 @@
+{% extends 'project_lists/base.html' %}
+{% block title %}
+    Agregar Proyecto
+{% endblock %}
+{% block content %}
+
+
+<div class="modal-dialog" role="">
+        <div class="modal-content">
+           <div class="modal-header d-block">
+            <div class="d-flex">
+             <h4 class="modal-title" style="color:black">Duplicar Proyecto: {{ project_name }} </h4>
+             <button type="button" class="close" onClick="javascript:history.go(-1);">
+                    <span aria-hidden="true">&times;</span>
+             </button>
+            </div>
+        </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <form method="POST" action="duplicateAllData/">
+                            {% csrf_token %}
+                            <span>
+                      
+                            <p class="modal-title" style="color:black; font-size: small;">¿Con qué nombre lo deseas duplicar?
+                            </p>
+                        
+                        <div class="input-group form-group-no-border input-lg">
+                            <input class="input-group form-group-no-border input-lg" required   name="name" value={{name}}>
+                        </div>
+                        <input class="input-group form-group-no-border input-lg" style="display:none" name="owner" value={{owner}} />
+                        <input class="input-group form-group-no-border input-lg" style="display:none" name="project_id" value={{project_id}} />
+                        
+                        <button type="submit"
+                                    class="btn btn-primary btn-round btn-lg btn-block">
+                               Duplicar
+                        </button>
+                        <h6 style="color:black; font-size: x-small;" >Recuerda que el nombre del proyecto debe ser único</h6>    
+                    </span>
+
+         
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"onClick="javascript:history.go(-1);">Volver</button>
+                 </div>
+            </div>
+        </div>
+ </div>
+
+{% endblock %}

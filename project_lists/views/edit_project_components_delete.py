@@ -6,7 +6,7 @@ from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
 from django.views.generic.edit import DeleteView
-from project_lists.models import ProjectList, Component
+from project_lists.models import ProjectList, Component, UseCase, Actors
 from project_lists.forms import ProjectListForm, ComponentForm
 
 
@@ -30,5 +30,12 @@ class ComponentDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         return context
 
     def form_valid(self, form):
+        component_id = self.kwargs.get('pk')
+        use_cases = UseCase.objects.filter(idComponent=component_id)
+        for use_case in use_cases:
+            use_case.delete()
+        actors = Actors.objects.filter(idComponent=component_id)
+        for actor in actors:
+            actor.delete()
         Component.objects.get(id=self.kwargs.get('pk')).delete()
         return super(ComponentDelete, self).form_valid(form)

@@ -6,33 +6,64 @@
 <div class="modal-dialog" role="">
     <div class="modal-content">
         <div class="modal-header">
-           <h5 style="color:black"> Editar Proyecto </h5>
+           <h5 style="color:black"> Cambiar nombre al proyecto: {{project_name}} </h5>
             <button type="button" class="close" onclick="location.href = {% url 'project_lists:dashboard' %} ">
                     <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
             <div class="card-body">
-                <form class="form" id="edit-form" method="POST" >
+                <form action='project/edit' method="POST" >
                     {% csrf_token %}
                     <span>
-                        <label class="form-check-label">
-                            {{ form.name.label }}
-                        </label>
                         <div class="input-group form-group-no-border input-lg">
-                            {{ form.name }}
+                            <input type="text" class="form-control testclass" maxlength="80" required="" name="project_name" value="{{project_name}}">  
+                            
                         </div>
+                          
+                        
+                        <div class="input-group" style="display: block;">
+                                {% if project_time is 1 %}
+                                    <select name = "time">
+                                         <option value = "1" selected>Días</option>
+                                        <option value = "2" >Horas</option>
+                                        <option value = "3">Minutos</option>
+                                    </select>
+                                  {% else %}
+                                    {% if project_time is 2 %}
+                                       <select name = "time">
+                                         <option value = "1">Días</option>
+                                        <option value = "2" selected>Horas</option>
+                                        <option value = "3">Minutos</option>
+                                    </select>
+                                    {% else %}
+                                        {% if project_time is 3 %}
+                                          <select name = "time">
+                                         <option value = "1" >Días</option>
+                                        <option value = "2" >Horas</option>
+                                        <option value = "3"selected>Minutos</option>
+                                    </select>
+                                        {% else %}
+                                          <select name = "time">
+                                         <option value = "1" selected>Días</option>
+                                        <option value = "2" >Horas</option>
+                                        <option value = "3">Minutos</option>
+                                    </select>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                                </div>
                         <input class="input-group form-group-no-border input-lg" style="display:none" name="list" value={{project_id}} />
-                            <button type="submit"
-                                    class="btn btn-primary btn-round btn-lg btn-block">
-                                Editar
-                            </button>
+                        <button type="submit"
+                                class="btn btn-primary btn-round btn-lg btn-block">
+                            Modificar
+                        </button>
                     </span>
                 </form>
             </div>
         </div>
         <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="location.href = {% url 'project_lists:dashboard' %}">Close </button>
+                <button type="button" class="btn btn-secondary" onclick="location.href = {% url 'project_lists:dashboard' %}">Volver</button>
         </div>
     </div>
 </div>

@@ -1,0 +1,145 @@
+{% extends 'project_lists/base.html' %}
+{% block title %}
+    Casos de Uso
+{% endblock %}
+{% block content %}
+    <div class="modal modal-dialog modal-login modal-clear alien-modal-form" id="FormModal"
+         tabindex="-1" role="dialog" style="color: black">
+    </div>
+
+    <div class="row" style="margin-top:-20px">
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="card card-plain" style="color:black">
+                    <a href="{% url 'project_lists:dashboard' %}"
+                    class="btn btn-neutral pull-left">❮ Volver al inicio</a>
+                
+                <div class="card-body bg-white" style="opacity:.65">
+                    {% if form.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            <div class="container">
+                                <div class="alert-icon">
+                                    <i class="now-ui-icons objects_support-17"></i>
+                                </div>
+                                {% for error in form.errors %}
+                                    {{ form.errors.as_text | escape }}
+                                {% endfor %}
+                                <button type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">
+                                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if messages %}
+                        <div class="alert alert-success" role="alert">
+                            <div class="container">
+                                <div class="alert-icon">
+                                    <i class="now-ui-icons ui-2_like"></i>
+                                </div>
+                                <strong>Componente agregado correctamente.</strong>
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-label="Close">
+  				        		    <span aria-hidden="true">
+						    	        <i class="now-ui-icons ui-1_simple-remove"></i>
+						            </span>
+                                </button>
+                            </div>
+                        </div>
+                    {% endif %}
+                 
+                    <div class="pull-left">
+                        <a href="{% url 'project_lists:use_case_add' component_id %}"
+                            class="padding-five btn btn-primary btn-round float-right">
+                            <i class="material-icons padding-five" style="font-style: normal;">+</i>
+                        </a>
+
+                        <div class="text-left" >
+                                <!-- <button type="button" style="color:white; background:#3498DB ;font-size: 12px" class="btn btn-neutral float-left"onClick="javascript:history.go(-1);"><strong>Volver</strong></button> -->
+                                <a href="{% url 'project_lists:repcu_details' project%}"
+                                class="btn btn-neutral float-left" style="color:#2471A3">
+                                <span class="glyphicon glyphicon-arrow-left">  </span>&nbsp; Volver</a>
+                                </a>
+                        </div>
+                   </div>
+
+
+                    <div class="table-responsive ">
+                        <table class="table table-hover table-fixed">
+                            {% if use_case_lists %}
+                                <thead class="">
+                                <tr>
+                                    <th>
+                                        Caso de Uso
+                                    </th>
+                                    <th>
+                                        Cant. de Transacciones
+                                    </th>
+                                    <th>
+                                        Tipo
+                                    </th>
+                                    <th>
+                                        Peso
+                                    </th>
+
+                                    <th class="text-center">
+                                        Acciones
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for cu in use_case_lists %}
+                                    <tr>
+                                        <td>
+                                            {{ cu.name }}
+                                        </td>
+                                        <td>
+                                                {{ cu.weightCU }}
+                                        </td>
+                                        <td>
+                                            {% if cu.weightCU is 5 %}
+                                                <label> Simple </label>
+                                            {% else %}
+                                            {% if cu.weightCU is 10 %}
+                                                <label> Promedio </label>
+                                            {% else %}
+                                                {% if cu.weightCU is 15 %}
+                                                    <label> Complejo </label>
+                                                {% else %}
+                                                    <label> Critico </label>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endif %}
+                                        </td>
+                                        <td>
+                                            {{ cu.weightCU }}
+                                        </td>
+                                        <td class="text-center">
+                                            <a class="nav-link" href="{% url 'project_lists:use_case_del' component_id  cu.id %}">Eliminar</a>
+                                        </td>
+                                        
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            {% else %}
+                                <br>
+                                <br>
+                                <thead>
+                                <tr>
+                                    <h6>
+                                        TODAVÍA NO HAS AGREGADO CASOS DE USO, POR FAVOR CREA UNO UTILIZANDO EL BOTÓN DE + 
+                                    </h6>
+                                </tr>
+                                </thead>
+                            {% endif %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

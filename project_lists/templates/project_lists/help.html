@@ -1,0 +1,488 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ayuda</title>
+    <style type="text/css">
+
+body {
+  overflow-x: hidden;
+  font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+}
+
+/* Toggle Styles */
+
+#viewport {
+  padding-left: 250px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#content {
+  width: 100%;
+  position: relative;
+  margin-right: 0;
+}
+
+/* Sidebar Styles */
+
+#sidebar {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 250px;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #283593;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#sidebar header {
+  background-color: #263238;
+  font-size: 20px;
+  line-height: 52px;
+  text-align: center;
+}
+
+#sidebar header a {
+  color: #fff;
+  display: block;
+  text-decoration: none;
+}
+
+#sidebar header a:hover {
+  color: #fff;
+}
+
+
+
+#sidebar .nav{
+
+}
+
+#sidebar .nav a{
+  background: none;
+  border-bottom: 1px solid #455A64;
+  color: #fff;
+  font-size: 14px;
+  padding: 16px 24px;
+}
+
+#sidebar .nav a:hover{
+  background: none;
+  color: #fff;
+}
+
+
+
+#sidebar .nav a i{
+  margin-right: 16px;
+}
+
+a:link  {
+    text-decoration: none;
+    color: #fff;
+    font-size: 13px;
+    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:40%
+
+}
+
+
+
+</style>
+</head>
+<body>
+
+
+<div id="viewport">
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="text-left">
+    <header>
+      <a>Menú</a>
+    </header>
+    <ol>
+       <li><a a href=#intro>Introducción</a>
+
+      </li>
+      <li><a href=#registro>Registro</a>
+        <ul>
+          <li><a href=#login>Log in</a></li>
+          <li><a href=#recover>Recuperar Contraseña</a></li>
+        </ul>
+      </li>
+      <li><a href=#GP>Gestionar proyectos</a>
+        <ul>
+          <li><a href=#crearproyecto>Crear un nuevo proyecto</a></li>
+          <li><a href=#editarproyecto>Editar Proyecto</a></li>
+          <li><a href=#eliminarproyecto>Eliminar Proyecto</a></li>
+        </ul>
+      </li>
+      <li><a href=#GC>Gestionar Componentes</a>
+        <ul>
+          <li><a href=#agregarcomponente>Agregar Componente</a></li>
+          <li><a href=#editarcomponente>Editar Componente
+          bar</a></li>
+          <li><a href=#eliminarcomponente>Eliminar Componente</a></li>
+        </ul>
+      </li>
+      <li><a href=#Estimar>Estimar</a>
+        <ul>
+          <li><a href=#estimarproyecto>Estimar Proyecto</a></li>
+          <li><a href=#mtv>Método de tres valores</a></li>
+          <li><a href=#mtv>Método de tres valores mejorado</a></li>
+          <li><a href=#repcu>Método de puntos de casos de uso revisado</a></li>
+        </ul>
+      </li>
+      <li><a href=#otros>Otros</a>
+        <ul>
+          <li><a href=#descargar>Descargar</a></li>
+          <li><a href=#duplicar>Duplicar Proyectos</a></li>
+          <li><a href=#ayuda>Obtener Ayuda</a></li>
+          </ul>
+        </li>
+         <li><a href=#metodos>Métodos de Estimación</a>
+           <ul>
+             <li><a href=#m_mtv>Métodos de Tres Valores</a></li>
+                <ul>
+                  <li><a href=#m_mtvH>Hipótesis del método</a></li>
+                  <li><a href=#m_mtvP>Procedimiento</a></li>
+                </ul>
+           </ul>
+         </li>
+          <li><a href=#m_tvm>Métodos de Tres Valores Mejorado</a></li>
+                <ul>
+                  <li><a href=#m_mtvmP>Procedimiento
+                </a></li>
+                </ul>
+            </ul>
+          </li>
+          <li><a href=#mrepcu>Punto de Casos de Uso Revisado</a></li>
+            <ul>
+              <li><a href=#mrepcua>Clasificación de actores para factores</a></li>
+              <li><a href=#mrepcucu>Clasificación de casos de uso para factores</a></li>
+              <li><a href=#mrepcufa">Factores ambientales</a></li>
+              <li><a href=#mrepcuft>Factores técnicos</a></li>
+              <li><a href=#calculo>El cálculo de la estimación</a></li>
+            </ul>
+            </ul>
+          </li>
+
+   </ol>
+  </div>
+  <!-- Content -->
+  <div id="content">
+       <header>
+      <a> ES3V+</a>
+    </header>
+
+    <div class="container-fluid">
+      <h1>Manual de usuario</h1>
+       <div id="intro">
+          <h1>Introducción</h1>
+
+       </div>
+
+      <p>
+       Bienvenido a ES3V+! Mediante la presente guía podrás utilizar el sistema de manera de poder estimar todos los proyectos que quieras en base a datos específicos que irás ingresando en diferentes tablas.
+       El sistema analizará los datos ingresados y te dirá cuánto estima que puede durar tu proyecto.
+      Para ello puedes elegir entre tres diferentes métodos de estimación: Método de Tres Valores, Método de Tres Valores Mejorado y Puntos de Caso de Uso Revisado. Cada uno de ellos te lo explicamos al final por si querés saber cómo calculan.
+
+        El sistema está hecho para estimar proyectos (principalmente de software) en etapas tempranas, cuando todavía no sabemos mucho lo que va a pasar o cómo va a pasar.
+        Para ello, primero se debe descomponer el proyecto en un conjunto de módulos estimables, de lo cual resulta un árbol que se denomina Estructura de Desglose de Trabajo. Los módulos del nivel inferior, es decir, aquellos con mayores nivel de detalle, indivisibles y estimables, se denominan Paquetes de Trabajo, su duración y desvío se estiman utilizando ecuaciones.
+        A estos paquetes de trabajo, les llamamos Componentes.
+
+        Luego de que hayas pensado todos los componentes, los agregas al sistema y podes elegir con qué método estimar. Según el método que elijas, los datos que el sistema te va a pedir que completes.
+
+        Luego de completados los datos, haces click en Estimar y listo!
+
+        Además hay otras funcionalidades extras que te contamos en la sección a continuación.
+      </p>
+         <div id="funcionalidades">
+          <h1>Funcionalidades</h1>
+
+       </div>
+       <div id="registro">
+          <h2>Registro</h2>
+
+       </div>
+       <p>
+         Para que puedas ingresar al sistema, debes estar previamente registrado en el mismo.
+         Para el registro de usuario se te solicitará un email y también se te solicitará una contraseña.
+         Para ello simplemente haz click en: REGISTRARME y completá los datos.
+       </p>
+
+       <img   style="width:40%" src={% static "main/img/signup.PNG" %} >
+
+        <div id="login">
+          <h3>Log in</h3>
+        </div>
+            <p>
+                Para poder ingresar al sistema primero tenés que haberte registrado en el mismo. Para ingresar, haz click en el botón Ingresar, completa el email y la contraseña. Hace click en INGRESAR.
+
+            </p>
+            <img src={% static "main/img/login.PNG" %} >
+
+         <div id="recover">
+          <h3>Recuperar Contraseña</h3>
+             <p></p>
+        </div>
+
+        <div id="GP">
+          <h2>Gestionar Proyectos</h2>
+       </div>
+        <p>Una vez ingresado, podés agregar, editar y eliminar varios proyectos. De esta manera, podes estimar uno solo o todos los que te propongas. Todos los que hayas ingresado se verán en la pantalla principal a la que llamamos Dashboard.</p>
+
+       <div id="crearproyecto">
+          <h3>Crear Proyectos</h3>
+       </div>
+        <p>Para agregar un nuevo proyecto, haz click en el símbolo de + y completa su nombre: </p>
+         <img  src={% static "main/img/nuevoproyecto.PNG" %} >
+         <div id="editarproyecto">
+          <h3>Editar Proyectos</h3>
+       </div>
+        <p>Para editar el nombre del proyecto haz click en:  </p>
+         <img style="width:15%;" src={% static "main/img/editarproyecto.PNG" %} >
+         <div id="eliminarproyecto">
+          <h3>Eliminar Proyectos</h3>
+       </div>
+        <p>Para eliminar un proyecto haz click en </p>
+         <img style="width:13%;" src={% static "main/img/eliminarproyecto.PNG" %} >
+        <p>Ten en cuenta que al eliminar el proyecto, eliminarás también todos sus componentes y estimaciones asociadas, de manera irrecuperable.</p>
+
+         <div id="GC">
+          <h2>Gestionar Componentes</h2>
+       </div>
+        <p>Como fue mencionado previamente, los componentes son todas aquellas unidades de trabajo estimables. Cada proyecto tendrá sus propios componentes y se accede a ellos mediante la opción: “Componentes”</p>
+
+       <div id="agregarcomponente">
+          <h3>Agregar <Componente></Componente></h3>
+       </div>
+        <p>Para un proyecto se pueden agregar tantos Componentes como desees. Al elegir la opción de Agregar Componente se desplegará una ventana con un campo para nombrar al mismo. </p>
+
+         <div id="editarcomponente">
+          <h3>Editar Componente</h3>
+       </div>
+        <p>Si seleccionas la opción de Editar un Componente del Proyecto, podés cambiarle el nombre del mismo manteniendo sus estimaciones si ya tuviera ingresadas.</p>
+
+         <div id="eliminarcomponente">
+          <h3>Eliminar Componente</h3>
+       </div>
+        <p>Al seleccionar esta opción, se desplegará una ventana consultando si estás seguro que deseas eliminar el Componente. Al eliminar un componente se eliminarán también las estimaciones del mismo en caso de tenerlas, de manera irrecuperable.</p>
+
+         <div id="Estimar">
+          <h2>Estimar</h2>
+       </div>
+        <div id="estimarproyecto">
+          <h3>Estimar Proyecto</h3>
+       </div>
+        <p>Una vez que se selecciona la opción de Estimar se te presentarán tres opciones para estimar el  proyecto: Método de tres valores (MTV), Método de tres valores mejorado (MTVM) y Puntos de caso de uso Revisado (Re-PCU).
+      Al seleccionar cada uno de ellos, serás redirigido a una sección correspondiente explicada a continuación.</p>
+       <div id="mtv">
+          <h3>Método de tres valores</h3>
+       </div>
+        <p>Si accedes a la sección de cálculo de estimación por el método de tres valores, te permitirá para cada componente ingresar 3 valores: Optimista, Pesimista y Medio.
+            Una vez ingresados todos los datos solicitados, tendrás un botón “Estimar” que al presionar te mostrará en pantalla el resultado de la estimación.
+            En Optimista debés ingresar la duración que estimas más optimistamente para realizar ese componente.
+            En Pesimista debés ingresar la duración que estimas más pesimistamente para realizar ese componente.
+            En Promedio debés ingresar la duración que estimas más probable para realizar ese componente.
+            Tené en cuenta que debes utilizar la misma unidad de tiempo para todos los componentes.
+            </p>
+
+         <div id="mtvm">
+          <h3>Método de tres valores mejorado</h3>
+       </div>
+        <p>Si accedes a la sección de cálculo de estimación por el método de tres valores mejorado, te permitirá para cada componente ingresar 4 valores: Optimista, Pesimista, Medio y Riesgo.
+        Una vez ingresados todos los datos solicitados, tendrás un botón “Estimar” que al presionar te mostrará en pantalla el resultado de la estimación.
+        En Optimista debés ingresar la duración que estimas más optimistamente para realizar ese componente.
+        En Pesimista debés ingresar la duración que estimas más pesimistamente para realizar ese componente.
+        En Promedio debés ingresar la duración que estimas más probable para realizar ese componente.
+        En el Riesgo debes elegir el riesgo asociado a ese componente.
+        Tené en cuenta que debes utilizar la misma unidad de tiempo para todos los componentes.</p>
+
+        <div id="repcu">
+          <h3>Método de puntos de casos de uso revisado</h3>
+       </div>
+        <p>
+            Si accedes a la sección de cálculo de estimación por puntos de casos de uso, se te solicitará que ingreses los siguientes datos para todos los casos de uso que hayas ingresado:
+            Cantidad de actores por tipo *
+            Número de Transacciones por tipo *
+            Formulario de factores técnicos *
+            Formulario de factores ambientales *
+
+            Luego podrás presionar “Estimar” y se le mostrará en pantalla el resultado de la estimación.
+
+            * El significado se encuentra explicado al final, bajo el título de Re-PCU.
+
+        </p>
+
+         <div id="otros">
+          <h2>Otros</h2>
+       </div>
+
+         <div id="descargar">
+          <h3>Descargar</h3>
+       </div>
+        <p> Una vez realizada una estimación, en cualquiera de los tres métodos disponibles, podrás descargar el detalle de los componentes, con su cálculo estimado. </p>
+          <div id="duplicar">
+          <h3>Duplicar</h3>
+       </div>
+        <p>Con el objetivo de poder realizar distintas estimaciones para un mismo proyecto, podrás elegir duplicar un proyecto. En este caso el sistema creará un nuevo proyecto con todos los datos que ya hayan sido ingresados en proyecto a duplicar, mostrando el mismo en la pantalla inicial.</p>
+        <div id="ayuda">
+          <h3>Ayuda</h3>
+       </div>
+           <p> Este mismo manual lo podrás encontrar en el sistema, haciendo click en el botón de Ayuda, en la parte inferior de la pantalla.   </p>
+       <div id="metodos">
+          <h1>Métodos de Estimación</h1>
+
+       </div>
+
+       <div id="m_mtv">
+          <h2>Métodos de Tres Valores</h2>
+       </div>
+       <p> Este método se originó con la técnica PERT considerando el valor medio de una función de distribución.
+Se determina el camino crítico a partir de los 3 valores visto anteriormente: Optimista (O), Más probable (M) y Pesimista (P).</p>
+         <div id="m_mtvH">
+          <h3>Hipótesis del método</h3>
+       </div>
+       <p> <ol>
+        <li>Las actividades siguen una distribución Beta, y no existe correlación en la duración de las actividades. </li>
+ <li>La estimación por tres puntos, puede ser usada para modelar la distribución de probabilidad de las actividades. </li>
+ <li>Solamente existe un camino crítico y ningún otro camino es candidato a ser crítico. </li>
+ <li>Las actividades del calendario son ignoradas. </li>
+</ol>
+En particular, a partir del punto b se ha propuesto una estimación para la duración y desvío de un proyecto que emplea las siguientes ecuaciones:
+</p>
+         <img  src={% static "main/img/ecuaciones.PNG" %} >
+        <div id="m_mtvP">
+          <h3>Procedimiento</h3>
+       </div>
+        <p>
+            Primero se debe descomponer el proyecto en un conjunto de módulos estimables, de lo cual resulta un árbol que se denomina Estructura de Desglose de Trabajo (EDS) o WBS en inglés.
+Los módulos del nivel inferior, es decir, aquellos con mayores nivel de detalle, indivisibles y estimables, se denominan Paquetes de Trabajo, su duración y desvío se estiman utilizando las ecuaciones.
+Luego la duración total del sistema se obtiene sumando la duración de todos los paquetes de trabajo del proyecto.
+
+Teniendo en cuenta la etapa temprana en la cual se realiza la estimación, en muchos casos para cuantificar el riesgo del proyecto es más factible considerar módulos más genéricos que el paquete de trabajo, por no contar en ese momento con la información necesaria, para realizar un análisis de riesgo con ese nivel de granularidad.
+Por ello se define un elemento al cual se le denominará genéricamente como Componente el cual debe cumplir con las dos propiedades importantes:
+
+        </p>
+
+
+        <li> Todos los hijos de un componente tiene el mismo grado de riesgo, caso contrario, se deberá descomponer el componente hasta tanto se cumpla esta premisa (podrá no tener hijos, es decir que sea un paquete de trabajo).</li>
+         <li>El componente se ubicará indistintamente en el primer, segundo o tercer nivel del WBS, en tanto el análisis de riesgo se pueda realizar de forma tan rigurosa como sea posible  </li>
+
+
+
+        <div id="m_mtvm">
+          <h2>Métodos de Tres Valores Mejorado</h2>
+       </div>
+
+          <p>Se basa en el MTV y ajusta su precisión incorporando el concepto de riesgo.  </p>
+
+        <div id="m_mtvmP">
+          <h3>Procedimiento</h3>
+       </div>
+
+          <p>Los pasos son los siguientes: </p>
+
+        <ol>
+        <li>
+            Se descompone progresivamente el proyecto, usando la técnica WBS, hasta un nivel donde cada componente (y sus subcomponentes) tengan un nivel uniforme de riesgo.
+            El análisis sistemático del riesgo debe ser hecho subdividiendo un proyecto en sus módulos principales (los componentes) para luego analizar el riesgo y la incertidumbre en detalle .
+            Dada la criticidad de este paso, una incorrecta priorización (ordenamiento) de los riesgos puede alterar significativamente el resultado. Debido a ello se compararon varios métodos de priorización: AHP(Analytic Hierarchy Process), Binary Search Tree, Bubble Sort y Cost-value ranking entre otros.
+            El método AHP se basa en que cada componente se compara con todos los restantes (comparación por pares; i.e., "todos contra todos"). Este método ha recibido diversas críticas, por ejemplo, se menciona que es un método costoso tanto en la colección de los datos como en el análisis.
+            Efectivamente, la cantidad de cálculos que deben realizarse es de O(n2), por lo que su uso se recomienda con no más de 20 ítems (en nuestro caso 20 componentes es una cantidad razonable para los proyectos de tamaño medio o medio-grande analizados),lo que implica una limitante en el escalamiento.
+        </li>
+        <li> Los componentes se clasifican según su riesgo en Riesgo Bajo (RB), Riesgo Medio (RM) o Riesgo Alto (RA), aplicando juicio de expertos por parte del estimador y/o equipo de trabajo.</li>
+        <li>  A continuación, se suman las duraciones de cada componente según la categoría de riesgo en la que haya sido clasificado el componente. Es decir, la duración de todos los componentes de RB más la duración de los de RM más la duración de los de RA.
+              Para ello se usan los valores de media y desvío estándar de la función de distribución Beta-Rectangular f(BR) con los parámetros pertinentes según el tipo de riesgo del componente:
+
+        <li>Finalmente, se suma la duración esperada y la varianza de todos los componentes para determinar la duración,varianza y desvío del proyecto.</li>
+        </ol>
+
+         <img style="width:30%;" class="center" src={% static "main/img/ecuaciones2.PNG" %} >
+
+
+         <div id="mrepcu">
+          <h2>Punto de Casos de Uso Revisado</h2>
+       </div>
+           <p> Re-UCP es una extensión del modelo PCU y e-UCP donde los parámetros de ambos modelos se analizan de manera integral.
+            En el modelo Re-UCP, la funcionalidad del sistema se mide calculando todos los puntos de caso de uso en el sistema.
+            La funcionalidad del sistema se estima por el impacto colectivo de los factores correspondientes asociados con los actores del sistema, el comportamiento del caso de uso, el impacto del entorno y el papel de los factores técnicos sobre el punto del caso de uso. [24]
+
+            En Re-UCP, los actores, los casos de uso, los factores ambientales y otros factores técnicos se clasifican además para asociar un factor de impacto particular en la actividad de caso de uso específico en lugar de la funcionalidad del sistema.
+            A diferencia de PCU o e-UCP, en donde el actor o el caso de uso se divide en simple, promedio o complejo con alguna estrategia de ponderación, Re-UCP usa diferentes categorizaciones de actor y casos de uso. </p>
+
+
+        <div id="mrepcua">
+          <h3>Clasificación de actores para factores:</h3>
+       </div>
+             <img  style="width:80%;"src={% static "main/img/table1.PNG" %} ></li>
+            <p>Peso del actor (PA) = Σ (Nro de actores * sus respectivos factores de peso)</p>
+
+            <div id="mrepcucu">
+              <h3> Clasificación de casos de uso para factores</h3>
+            </div>
+             <img src={% static "main/img/table2.PNG" %} ></li>
+        <p>Peso de Casos de Usos (PC) = Σ  (Nro de casos de uso * sus respectivos factores de peso)</p>
+
+         <div id="mrepcufa">
+          <h3>Factores ambientales</h3>
+       </div>
+
+            <p>Esto refleja su enfoque principal en las capacidades del equipo. </p>
+              <p>  Hay 8 factores que son:</p>
+             <img src={% static "main/img/table3.PNG" %} ></li>
+              <p>El primer paso es determinar el valor que caracteriza a cada factor, de -1 a 5.  </p>
+              <p> Primero, determine el valor de 0 a 5 para cada factor. Luego se multiplica por los multiplicadores y se deben sumar. </p>
+              <p> Factor ambiental (FA) = 1.4 - (0.03 * Suma total).  </p>
+              <p> Cuanto mayor sea la suma, menor será el factor ambiental.
+                Esto es diferente al cálculo del factor técnico, pero tiene sentido: cuanto más experimentados sean sus desarrolladores, menos esfuerzo gastarán en un proyecto determinado. </p>
+
+            <div id="mrepcuft">
+          <h3>Factores técnicos</h3>
+       </div>
+            <p>No todos los factores tienen el mismo impacto potencial en el costo estimado del proyecto, por lo que cada factor tiene un multiplicador que representa los pesos relativos de los factores.</p>
+              <p>  Hay 13 factores que son:</p>
+             <img style="width:35%;" src={% static "main/img/table4.PNG" %} ></li>
+              <p>
+                Para cada uno de los trece factores técnicos, debe asignar una magnitud relativa de 0 a 5.
+                Esos valores (0-5) se multiplican por el multiplicador para cada factor.
+                Por ejemplo, una magnitud relativa de 3 para la multiplataforma resultaría en 6 puntos, ya que tiene un peso de 2 de impacto en el esfuerzo de trabajo.
+              </p>
+
+             <div id="calculo">
+          <h3> El cálculo de la estimación</h3>
+                 <p>Puntos de caso de uso no ajustados (PCU no ajustados) = PA + PC.</p>
+                  <p>Re-UCP = PCU no ajustados x FCT x FA</p>
+                  <p>Para calcular el esfuerzo se calcula:</p>
+                  <p>Esfuerzo = Re-UCP/ Horas hombres. </p>
+                 <p>Se sugiere  20 horas hombre por Re-UCP.</p>
+       </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
+
